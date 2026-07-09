@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Good Night - Start Tracking</title>
+  <link rel="stylesheet" href="adisak_startracking_style.css">
+</head>
+<body>
+
+  <div class="registration-container">
+    <div class="registration-card">
+      
+      <div class="app-logo">🌙 GOOD NIGHT APP</div>
+      <h2>ระบบเริ่มจับเวลาการนอน</h2>
+      <p class="subtitle">กดปุ่มด้านล่างเมื่อคุณพร้อมที่จะเข้านอน เพื่อบันทึกเวลาเริ่มต้นทันที</p>
+      
+      <div class="status-box">
+        <span class="status-dot"></span>
+        <span id="statusText">สถานะ: สแตนบายพร้อมบันทึก</span>
+      </div>
+
+      <button id="startTrackingBtn" class="btn-submit">▶ เริ่มจับเวลาการนอน</button>
+      
+      <div id="timestampDisplay" class="timestamp-result" style="display: none;">
+        <p>บันทึกเวลาเข้านอนสำเร็จ!</p>
+        <strong id="recordedTime">00:00:00</strong>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const startBtn = document.getElementById('startTrackingBtn');
+      const statusText = document.getElementById('statusText');
+      const timestampDisplay = document.getElementById('timestampDisplay');
+      const recordedTime = document.getElementById('recordedTime');
+      const statusDot = document.querySelector('.status-dot');
+
+      // ตรวจสอบเงื่อนไขตัวแปรหน้าจอลงทะเบียน (ถ้ามีฟอร์มนี้อยู่)
+      const regForm = document.getElementById('registrationForm');
+
+      if (regForm) {
+        // --- ลอจิกระบบหน้าลงทะเบียน (Registration) ---
+        regForm.addEventListener('submit', (e) => {
+          // 1. ป้องกันไม่ให้หน้าเว็บรีเฟรช (Prevent Default)
+          e.preventDefault();
+
+          const fullName = document.getElementById('fullName').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+
+          // 4. ตรวจสอบว่ากรอกข้อมูลครบทุกช่องไหม
+          if (!fullName || !email || !password || !confirmPassword) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วนทุกช่องด้วยครับ");
+            return;
+          }
+
+          // 2 & 3. ตรวจสอบว่ารหัสผ่านตรงกันหรือไม่
+          if (password !== confirmPassword) {
+            alert("รหัสผ่านไม่ตรงกัน! กรุณาตรวจสอบอีกครั้ง");
+            return;
+          }
+
+          // 5. หากผ่านทุกเงื่อนไข
+          alert("ลงทะเบียนสำเร็จเรียบร้อย! (นี่คือระบบจำลอง)");
+        });
+      } else if (startBtn) {
+        // --- ลอจิกระบบเริ่มจับเวลาการนอน (Start Tracking) ---
+        startBtn.addEventListener('click', (e) => {
+          e.preventDefault(); // ป้องกันพฤติกรรมเริ่มต้นของปุ่ม
+
+          // ดึงเวลาจริงจากเครื่องคอมพิวเตอร์ปัจจุบัน
+          const now = new Date();
+          const timeString = now.toLocaleTimeString('th-TH', { 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+          }) + ' น.';
+
+          // 5. แสดงผล Alert ป๊อปอัปแจ้งผลลัพธ์สำเร็จ
+          alert(`ลงทะเบียนสำเร็จ! (นี่คือระบบจำลอง)\nระบบได้บันทึกเวลาเริ่มต้นเข้านอนของคุณปุ๊กแล้วเมื่อเวลา: ${timeString}`);
+
+          // อัปเดต UI หน้าจอเพื่อโต้ตอบกับการทำงานของผู้ใช้ (Interactivity)
+          statusText.innerText = "สถานะ: กำลังติดตามการนอนของคุณ...";
+          statusDot.style.backgroundColor = "#ff4757"; // สลับเป็นสีแดงเพื่อบอกว่าระบบกำลังทำงาน
+          
+          recordedTime.innerText = timeString;
+          timestampDisplay.style.display = "block"; // เปิดกล่องแสดงเวลา
+
+          // ล็อกปุ่มไว้ไม่ให้กดซ้ำ
+          startBtn.innerText = "🔒 กำลังบันทึกเวลา...";
+          startBtn.disabled = true;
+          startBtn.style.opacity = "0.6";
+          startBtn.style.cursor = "not-allowed";
+        });
+      }
+    });
+  </script>

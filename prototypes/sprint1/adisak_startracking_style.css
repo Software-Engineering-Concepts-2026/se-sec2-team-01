@@ -1,0 +1,88 @@
+/* 1. Style the body to have a light gray background and use a sans-serif font. */
+body {
+  background-color: #f0f2f5; /* สีเทาอ่อน */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif; /* sans-serif font */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+  /* 2. Center the main form card horizontally and vertically on the page. */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* ดึงความสูงเต็มหน้าจอเพื่อให้จัดกึ่งกลางแนวตั้งได้ */
+}
+
+/* 3. Give the card a white background, rounded corners, and a subtle box shadow. */
+.registration-card {
+  background-color: #ffffff; /* พื้นหลังสีขาว */
+  border-radius: 12px; /* ขอบมน */
+  padding: 30px;
+  width: 100%;
+  max-width: 400px; /* จำกัดความกว้างไม่ให้การ์ดขยายกว้างเกินไป */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* เงาแบบละมุน (subtle box shadow) */
+}
+
+/* ตั้งค่าระยะห่างของหัวข้อด้านบนคาร์ด */
+.registration-card h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333333;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+/* จัดระเบียบระยะห่างของแต่ละกล่อง Input */
+.form-group {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.form-group label {
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+  color: #555555;
+  font-weight: 500;
+}
+
+/* 4. Style all input fields to have consistent padding and a light border. */
+.form-group input {
+  padding: 10px 12px; /* padding เท่ากันสม่ำเสมอ */
+  border: 1px solid #dcdde1; /* light border เส้นขอบสีอ่อน */
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+/* เพิ่มลูกเล่นเวลาผู้ใช้คลิกพิมพ์ที่ช่อง Input */
+.form-group input:focus {
+  border-color: #007bff;
+}
+
+/* 5. Style the primary button to have a blue background, white text, and a hover effect. */
+.btn-submit {
+  background-color: #007bff; /* พื้นหลังสีน้ำเงิน */
+  color: #ffffff; /* ตัวหนังสือสีขาว */
+  border: none;
+  padding: 12px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease; /* เตรียมไว้สำหรับ hover effect */
+  margin-top: 10px;
+}
+
+/* Hover Effect เมื่อเมาส์มาชี้ที่ปุ่ม */
+.btn-submit:hover {
+  background-color: #0056b3; /* สีน้ำเงินเข้มขึ้นตอนเมาส์ชี้ */
+}
+
+/* Active Effect ตอนกดปุ่มจมลงไป */
+.btn-submit:active {
+  transform: scale(0.98);
+}
