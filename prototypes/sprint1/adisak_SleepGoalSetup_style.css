@@ -1,0 +1,78 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    width:500px;
+    margin:40px auto;
+}
+
+.section{
+    margin-bottom:25px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+}
+
+select,
+input[type="text"],
+input[type="time"]{
+    width:100%;
+    padding:10px;
+}
+
+.clock-box{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+    padding:20px;
+}
+
+.clock-circle{
+    width:220px;
+    height:220px;
+    border:1px solid;
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.time{
+    text-align:center;
+}
+
+.time-picker{
+    width:100%;
+}
+
+.activities{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.activities label{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    padding:8px 14px;
+    border:1px solid;
+    border-radius:20px;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    cursor:pointer;
+}
