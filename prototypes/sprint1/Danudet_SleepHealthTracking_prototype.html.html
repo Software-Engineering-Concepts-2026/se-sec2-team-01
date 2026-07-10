@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sleep Health Tracking</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="Danudet_SleepHealthTracking_style.css">
+</head>
+
+<body>
+
+<header>
+
+    <h1>Sleep Health Tracking</h1>
+
+    <p>Daily Lifestyle Tracking for Better Sleep Analysis</p>
+
+</header>
+
+<div class="container">
+
+    <!-- =========================
+         LEFT : INPUT FORM
+    ========================== -->
+
+    <section class="card">
+
+        <h2>Daily Behavior</h2>
+
+        <form id="trackingForm">
+
+            <label>Caffeine Intake</label>
+
+            <select id="caffeine">
+
+                <option>None</option>
+                <option>1 Cup</option>
+                <option>2 Cups</option>
+                <option>3+ Cups</option>
+
+            </select>
+
+            <label>Stress Level</label>
+
+            <input
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+                id="stress">
+
+            <span id="stressValue">5</span>
+
+            <label>Exercise</label>
+
+            <select id="exercise">
+
+                <option>None</option>
+                <option>Light</option>
+                <option>Moderate</option>
+                <option>Heavy</option>
+
+            </select>
+
+            <label>Sleep Time</label>
+
+            <input
+                type="time"
+                id="sleepTime"
+                value="23:00">
+
+            <button type="submit">
+
+                Save Today's Record
+
+            </button>
+
+        </form>
+
+    </section>
+
+
+    <!-- =========================
+         RIGHT : RESULT
+    ========================== -->
+
+    <section class="card">
+
+        <div class="tabs">
+
+            <button class="tab active" data-tab="history">
+
+                History
+
+            </button>
+
+            <button class="tab" data-tab="analysis">
+
+                Analysis
+
+            </button>
+
+        </div>
+
+        <!-- HISTORY -->
+
+        <div id="history" class="tab-content active">
+
+            <h2>Recent Records</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Date</th>
+                        <th>Caffeine</th>
+                        <th>Stress</th>
+                        <th>Exercise</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="historyTable">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- ANALYSIS -->
+
+        <div id="analysis" class="tab-content">
+
+            <h2>Sleep Insight</h2>
+
+            <div class="analysis-box">
+
+                <h3 id="sleepScore">
+
+                    Sleep Score : 82/100
+
+                </h3>
+
+                <p id="recommendation">
+
+                    Moderate stress and low caffeine support healthy sleep.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script src="Danudet_SleepHealthTracking_script.js"></script>
+
+</body>
+</html>
