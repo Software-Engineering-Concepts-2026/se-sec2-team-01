@@ -1,0 +1,154 @@
+/* --------------------------
+   Global Style
+-------------------------- */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+
+    background:#eef4ff;
+
+}
+
+header{
+
+    background:#375a7f;
+    color:white;
+    text-align:center;
+    padding:25px;
+
+}
+
+.container{
+
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    padding:25px;
+
+}
+
+.card{
+
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+
+}
+
+label{
+
+    display:block;
+    margin-top:15px;
+    margin-bottom:5px;
+
+}
+
+select,
+input[type=time]{
+
+    width:100%;
+    padding:10px;
+
+}
+
+input[type=range]{
+
+    width:100%;
+
+}
+
+button{
+
+    margin-top:20px;
+    width:100%;
+    padding:12px;
+    background:#3b82f6;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+
+}
+
+button:hover{
+
+    background:#2563eb;
+
+}
+
+.tabs{
+
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+
+}
+
+.tab{
+
+    flex:1;
+
+}
+
+.tab.active{
+
+    background:#1d4ed8;
+
+}
+
+.tab-content{
+
+    display:none;
+
+}
+
+.tab-content.active{
+
+    display:block;
+
+}
+
+table{
+
+    width:100%;
+    border-collapse:collapse;
+
+}
+
+th,
+td{
+
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
+
+}
+
+.analysis-box{
+
+    background:#f2f8ff;
+    padding:20px;
+    border-radius:10px;
+
+}
+
+/* --------------------------
+   Responsive
+-------------------------- */
+
+@media(max-width:768px){
+
+.container{
+
+grid-template-columns:1fr;
+
+}
+
+}
