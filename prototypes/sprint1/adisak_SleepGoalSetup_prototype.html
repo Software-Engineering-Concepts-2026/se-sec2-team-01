@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Good Night</title>
+    <link rel="stylesheet" href="adisak_SleepGoalSetup_style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- อายุ -->
+    <div class="section">
+        <label>อายุ</label>
+        <select id="age">
+            <option>20 ปี</option>
+            <option>21 ปี</option>
+            <option>22 ปี</option>
+        </select>
+    </div>
+
+    <!-- ชั่วโมงการนอน -->
+    <div class="section">
+        <label>ช่วงอายุนี้ควรนอน</label>
+        <input type="text" value="7-9 ชั่วโมง" readonly>
+    </div>
+
+    <!-- เวลานอน -->
+    <div class="section">
+        <label>เวลาที่ต้องการเข้านอน</label>
+
+        <div class="clock-box">
+            <div class="clock-circle">
+                <div class="time">
+                    <h2>21:00</h2>
+                    <p>เวลานอน</p>
+                </div>
+            </div>
+
+            <div class="time-picker">
+                <label>หรือกรอกเอง</label>
+                <input type="time" id="sleepTime" value="21:00">
+            </div>
+        </div>
+    </div>
+
+    <!-- ข้อความ -->
+    <p>ตื่นเช้าที่ต้องการ เช่น 05:00</p>
+
+    <!-- กิจกรรมก่อนนอน -->
+    <div class="section">
+        <label>เลือกกิจกรรมก่อนนอน</label>
+
+        <div class="activities">
+
+            <label>
+                <input type="checkbox" value="ดื่มกาแฟ">
+                ดื่มกาแฟ
+            </label>
+
+            <label>
+                <input type="checkbox" value="ใช้โทรศัพท์">
+                ใช้โทรศัพท์
+            </label>
+
+            <label>
+                <input type="checkbox" value="ออกกำลังกาย">
+                ออกกำลังกาย
+            </label>
+
+            <label>
+                <input type="checkbox" value="อ่านหนังสือ">
+                อ่านหนังสือ
+            </label>
+
+            <label>
+                <input type="checkbox" value="ฟังเพลง">
+                ฟังเพลง
+            </label>
+
+            <label>
+                <input type="checkbox" value="ดื่มชา">
+                ดื่มชา
+            </label>
+
+            <label>
+                <input type="checkbox" value="คสามรู้สึก/ความเครียด">
+                ความรู้สึก/ความเครียด
+            </label>
+
+        </div>
+    </div>
+
+    <!-- ปุ่ม -->
+    <button onclick="saveData()">เริ่มใช้งาน</button>
+
+</div>
+
+<script>
+function saveData() {
+
+    // ดึงข้อมูล
+    const age = document.getElementById("age").value;
+    const sleepTime = document.getElementById("sleepTime").value;
+
+    // ดึงกิจกรรมที่เลือก
+    const activities = [];
+
+    document.querySelectorAll(".activities input[type='checkbox']").forEach(function(item){
+        if(item.checked){
+            activities.push(item.value);
+        }
+    });
+
+    // บันทึกลง Local Storage
+    localStorage.setItem("age", age);
+    localStorage.setItem("sleepTime", sleepTime);
+    localStorage.setItem("activities", JSON.stringify(activities));
+
+    // แจ้งเตือน
+    alert("บันทึกข้อมูลเรียบร้อย");
+
+    // ถ้าต้องการไปอีกหน้า ให้เอา // ออก
+    // window.location.href = "result.html";
+}
+</script>
+
+</body>
+</html>
