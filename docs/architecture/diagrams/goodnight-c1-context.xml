@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-07-21T00:00:00.000Z" agent="C4 Model" version="21.0.0" type="device">
+  <diagram name="C1 - System Context" id="goodnight-c1-context">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;C4 Model - Level 1: System Context Diagram&lt;/b&gt;&lt;br&gt;&lt;i&gt;Goodnight - Sleep Optimization Platform&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="500" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- Main System: Goodnight Platform -->
+        <mxCell id="system" value="&lt;b&gt;🌙 Goodnight Platform&lt;/b&gt;&lt;br&gt;&lt;br&gt;Web Application for Sleep Tracking,&lt;br&gt;Health Optimization &amp;amp; Personalized Insights&lt;br&gt;&lt;br&gt;&lt;i&gt;[Software System]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=3;fontSize=13;verticalAlign=top;spacingTop=15;arcSize=8;" vertex="1" parent="1">
+          <mxGeometry x="550" y="280" width="320" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Actor 1: Ton (Health-Optimizing User) -->
+        <mxCell id="actor-ton" value="&lt;b&gt;👨‍💼 ต้น (Ton)&lt;/b&gt;&lt;br&gt;&lt;br&gt;Health-Optimizing User&lt;br&gt;PM @ Fintech Startup, 34 ปี&lt;br&gt;&lt;i&gt;[Person]&lt;/i&gt;" style="shape=actor;whiteSpace wrap;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=11;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="150" y="300" width="140" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- Actor 2: Pook (Sleep-Challenged User) -->
+        <mxCell id="actor-pook" value="&lt;b&gt;👩‍💼 ปุ๊ก (Pook)&lt;/b&gt;&lt;br&gt;&lt;br&gt;Sleep-Challenged User&lt;br&gt;Senior Marketing Manager, 34 ปี&lt;br&gt;&lt;i&gt;[Person]&lt;/i&gt;" style="shape=actor;whiteSpace wrap;html=1;outlineConnect=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontSize=11;verticalAlign=top;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="150" y="520" width="140" height="140" as="geometry" />
+        </mxCell>
+
+        <!-- External System 1: Wearable Devices / Smart Watch -->
+        <mxCell id="ext-wearable" value="&lt;b&gt;⌚ Wearable Devices&lt;/b&gt;&lt;br&gt;&lt;br&gt;Apple Watch, Garmin, Oura Ring&lt;br&gt;Sleep &amp;amp; Health Data Source&lt;br&gt;&lt;i&gt;[Hardware/External System]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="200" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- External System 2: Apple Health / Google Fit API -->
+        <mxCell id="ext-health-api" value="&lt;b&gt;🏥 Health Data API&lt;/b&gt;&lt;br&gt;&lt;br&gt;Apple Health / Google Fit&lt;br&gt;Central Health Data Hub&lt;br&gt;&lt;i&gt;[External System]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="370" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- External System 3: Email / Notification Service -->
+        <mxCell id="ext-notification" value="&lt;b&gt;📧 Notification Service&lt;/b&gt;&lt;br&gt;&lt;br&gt;Email, Push Notifications&lt;br&gt;Sleep Reminders &amp;amp; Alerts&lt;br&gt;&lt;i&gt;[External System]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="540" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- External System 4: Calendar API -->
+        <mxCell id="ext-calendar" value="&lt;b&gt;📅 Calendar API&lt;/b&gt;&lt;br&gt;&lt;br&gt;Google Calendar Integration&lt;br&gt;Schedule &amp;amp; Sleep Planning&lt;br&gt;&lt;i&gt;[External System]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="710" width="200" height="130" as="geometry" />
+        </mxCell>
+
+        <!-- ============ CONNECTIONS / INTERACTIONS ============ -->
+
+        <!-- Ton -> Goodnight -->
+        <mxCell id="conn-ton-1" value="Views dashboard &amp;amp; sleep insights&lt;br&gt;Logs daily activities &amp;mood" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="actor-ton" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Goodnight -> Ton -->
+        <mxCell id="conn-ton-2" value="Personalized recommendations&lt;br&gt;Weekly/Monthly trend reports" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="system" target="actor-ton">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="350" />
+              <mxPoint x="480" y="380" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Pook -> Goodnight -->
+        <mxCell id="conn-pook-1" value="Tracks sleep patterns &amp;amp; issues&lt;br&gt;Views actionable insights" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="actor-pook" target="system">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Goodnight -> Pook -->
+        <mxCell id="conn-pook-2" value="Root cause analysis&lt;br&gt;Personalized sleep coaching" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d79b00;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="system" target="actor-pook">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="570" />
+              <mxPoint x="480" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+
+        <!-- Goodnight -> Wearable Devices -->
+        <mxCell id="conn-wearable" value="Syncs sleep &amp; health data&lt;br&gt;(HRV, Sleep Stages, Activity)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="system" target="ext-wearable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Goodnight -> Health API -->
+        <mxCell id="conn-health-api" value="Imports historical health data&lt;br&gt;Bi-directional sync" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="system" target="ext-health-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Goodnight -> Notification Service -->
+        <mxCell id="conn-notification" value="Sends sleep reminders&lt;br&gt;Weekly digest emails" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="system" target="ext-notification">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Goodnight -> Calendar API -->
+        <mxCell id="conn-calendar" value="Creates sleep schedule events&lt;br&gt;Blocks bedtime in calendar" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=2;fontSize=10;fontColor=#555555;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="system" target="ext-calendar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend" value="&lt;b&gt;Legend&lt;/b&gt;&lt;br&gt;&lt;br&gt;┌─────────────────────────┐&lt;br&gt;│ Blue Box = Our System    │&lt;br&gt;│ Yellow/Orange = Users     │&lt;br&gt;│ Gray Dashed = External   │&lt;br&gt;└─────────────────────────┘&lt;br&gt;&lt;br&gt;→ = Interaction Flow" style="rounded=1;whiteSpace wrap;html=1;fillColor=#ffffff;strokeColor=#999999;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="750" width="220" height="150" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

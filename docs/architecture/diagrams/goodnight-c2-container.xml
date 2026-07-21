@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-07-21T00:00:00.000Z" agent="C4 Model" version="21.0.0" type="device">
+  <diagram name="C2 - Container Diagram" id="goodnight-c2-container">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1300" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Title -->
+        <mxCell id="title" value="&lt;b&gt;C4 Model - Level 2: Container Diagram&lt;/b&gt;&lt;br&gt;&lt;i&gt;Goodnight - Sleep Optimization Platform&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=16;fontColor=#333333;" vertex="1" parent="1">
+          <mxGeometry x="450" y="15" width="500" height="50" as="geometry" />
+        </mxCell>
+
+        <!-- System Boundary (Large Box) -->
+        <mxCell id="boundary" value="&lt;b&gt;🌙 Goodnight Platform&lt;/b&gt;&lt;br&gt;&lt;i&gt;[Software System Boundary]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=2;dashed=1;fontSize=14;verticalAlign=top;spacingTop=10;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="280" y="100" width="780" height="580" as="geometry" />
+        </mxCell>
+
+        <!-- Container 1: Frontend Web Application -->
+        <mxCell id="container-fe" value="&lt;b&gt;🖥️ Frontend Web App&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Technology:&lt;/b&gt; React + Vite / Next.js&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt; Provides user-facing UI for dashboard,&lt;br&gt;sleep tracking, insights &amp;amp; settings&lt;br&gt;&lt;br&gt;&lt;i&gt;[Container: SPA/Web Application]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="320" y="170" width="260" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Container 2: Backend API -->
+        <mxCell id="container-api" value="&lt;b&gt;⚙️ Backend API&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Technology:&lt;/b&gt; Python / Flask or Node.js / Express&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt; Handles business logic, data processing,&lt;br&gt;AI analysis &amp;amp; exposes REST API&lt;br&gt;&lt;br&gt;&lt;i&gt;[Container: API Application]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;strokeWidth=2;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="650" y="170" width="280" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Container 3: Primary Database -->
+        <mxCell id="container-db" value="&lt;b&gt;🗄️ Primary Database&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Technology:&lt;/b&gt; PostgreSQL&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt; Stores user profiles, sleep records,&lt;br&gt;health metrics &amp;amp; activity logs&lt;br&gt;&lt;br&gt;&lt;i&gt;[Container: Database]&lt;/i&gt;" style="shape=cylinder3;whiteSpace wrap;html=1;boundedLbl=1;backgroundOutline=1;size=10;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="420" width="240" height="200" as="geometry" />
+        </mxCell>
+
+        <!-- Container 4: AI/Analytics Service -->
+        <mxCell id="container-ai" value="&lt;b&gt;🤖 AI Analytics Service&lt;/b&gt;&lt;br&gt;&lt;br&gt;&lt;b&gt;Technology:&lt;/b&gt; Python / scikit-learn or OpenAI API&lt;br&gt;&lt;b&gt;Description:&lt;/b&gt; Generates personalized insights,&lt;br&gt;sleep pattern analysis &amp;amp; recommendations&lt;br&gt;&lt;br&gt;&lt;i&gt;[Container: Microservice]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;strokeWidth=2;fontSize=11;verticalAlign=top;spacingTop=12;" vertex="1" parent="1">
+          <mxGeometry x="680" y="430" width="250" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- ============ EXTERNAL ACTORS (Outside boundary) ============ -->
+
+        <!-- Actor 1: Ton -->
+        <mxCell id="actor-ton" value="&lt;b&gt;👨‍💼 ต้น (Ton)&lt;/b&gt;&lt;br&gt;Health-Optimizer&lt;br&gt;&lt;i&gt;[User]&lt;/i&gt;" style="shape=actor;whiteSpace wrap;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;strokeWidth=2;fontSize=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="220" width="120" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- Actor 2: Pook -->
+        <mxCell id="actor-pook" value="&lt;b&gt;👩‍💼 ปุ๊ก (Pook)&lt;/b&gt;&lt;br&gt;Sleep-Challenged&lt;br&gt;&lt;i&gt;[User]&lt;/i&gt;" style="shape=actor;whiteSpace wrap;html=1;outlineConnect=0;fillColor=#ffe6cc;strokeColor=#d79b00;strokeWidth=2;fontSize=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="60" y="400" width="120" height="110" as="geometry" />
+        </mxCell>
+
+        <!-- External: Wearable Devices -->
+        <mxCell id="ext-wearable" value="&lt;b&gt;⌚ Wearables&lt;/b&gt;&lt;br&gt;Apple Watch/Garmin&lt;br&gt;&lt;i&gt;[External]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;dashed=1;fontSize=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="160" width="150" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- External: Health API -->
+        <mxCell id="ext-health" value="&lt;b&gt;🏥 Health API&lt;/b&gt;&lt;br&gt;Apple Health/Fit&lt;br&gt;&lt;i&gt;[External]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;dashed=1;fontSize=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="290" width="150" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- External: Notification Service -->
+        <mxCell id="ext-notif" value="&lt;b&gt;📧 Notifications&lt;/b&gt;&lt;br&gt;Email/Push Service&lt;br&gt;&lt;i&gt;[External]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;dashed=1;fontSize=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="420" width="150" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- External: Calendar API -->
+        <mxCell id="ext-calendar" value="&lt;b&gt;📅 Calendar&lt;/b&gt;&lt;br&gt;Google Calendar&lt;br&gt;&lt;i&gt;[External]&lt;/i&gt;" style="rounded=1;whiteSpace wrap;html=1;fillColor=#f5f5f5;strokeColor=#666666;strokeWidth=1;dashed=1;fontSize=10;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
+          <mxGeometry x="1120" y="550" width="150" height="90" as="geometry" />
+        </mxCell>
+
+        <!-- ============ INTERNAL CONNECTIONS ============ -->
+
+        <!-- Users -> Frontend -->
+        <mxCell id="conn-user-fe-1" value="HTTPS&lt;br&gt;(Browser)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="actor-ton" target="container-fe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <mxCell id="conn-user-fe-2" value="HTTPS&lt;br&gt;(Browser)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#82b366;strokeWidth=2;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="actor-pook" target="container-fe">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Frontend -> Backend API -->
+        <mxCell id="conn-fe-api" value="REST API Calls&lt;br&gt;(JSON/HTTPS)&lt;br&gt;&lt;i&gt;async/fetch or axios&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#6c8ebf;strokeWidth=2;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-fe" target="container-api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend API -> Database -->
+        <mxCell id="conn-api-db" value="SQL Queries&lt;br&gt;(JDBC/PSQL)&lt;br&gt;&lt;i&gt;ORM: SQLAlchemy/Prisma&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#d6b656;strokeWidth=2;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-api" target="container-db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend API -> AI Service -->
+        <mxCell id="conn-api-ai" value="gRPC / REST&lt;br&gt;(Internal)&lt;br&gt;&lt;i&gt;Send data for analysis&lt;/i&gt;" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=2;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-api" target="container-ai">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- AI Service -> Database (read historical data) -->
+        <mxCell id="conn-ai-db" value="Read Historical Data&lt;br&gt;(for ML training)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#9673a6;strokeWidth=1;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;dashed=1;" edge="1" parent="1" source="container-ai" target="container-db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- ============ EXTERNAL CONNECTIONS ============ -->
+
+        <!-- Backend -> Wearables -->
+        <mxCell id="conn-api-wearable" value="Bluetooth/WebSocket&lt;br&gt;(Device Sync)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-api" target="ext-wearable">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend -> Health API -->
+        <mxCell id="conn-api-health" value="OAuth 2.0 / REST&lt;br&gt;(HealthKit/Fit API)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-api" target="ext-health">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend -> Notification -->
+        <mxCell id="conn-api-notif" value="SMTP / FCM API&lt;br&gt;(Send notifications)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-api" target="ext-notif">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Backend -> Calendar -->
+        <mxCell id="conn-api-calendar" value="Google Calendar API&lt;br&gt;(OAuth 2.0 / REST)" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#666666;strokeWidth=1;fontSize=9;fontColor=#444444;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="container-api" target="ext-calendar">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+
+        <!-- Legend Box -->
+        <mxCell id="legend" value="&lt;b&gt;Legend - Container Types&lt;/b&gt;&lt;br&gt;&lt;br&gt;┌──────────────────────────────┐&lt;br&gt;│ 🟢 Green = Frontend (SPA)    │&lt;br&gt;│ 🔵 Blue = Backend API         │&lt;br&gt;│ 🟡 Yellow = Database          │&lt;br&gt;│ 🟣 Purple = AI/Microservice   │&lt;br&gt;│ ⬜ Gray Dashed = External     │&lt;br&gt;└──────────────────────────────┘&lt;br&gt;&lt;br&gt;Solid line = Synchronous&lt;br&gt;Dashed = Asynchronous/Read-only" style="rounded=1;whiteSpace wrap;html=1;fillColor=#ffffff;strokeColor=#999999;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;" vertex="1" parent="1">
+          <mxGeometry x="40" y="720" width="280" height="180" as="geometry" />
+        </mxCell>
+
+        <!-- Tech Stack Summary Box -->
+        <mxCell id="tech-summary" value="&lt;b&gt;Proposed Tech Stack Summary&lt;/b&gt;&lt;br&gt;&lt;br&gt;| Layer | Technology |&lt;br&gt;|-------|------------|&lt;br&gt;| Frontend | React + Vite |&lt;br&gt;| Backend | Python / Flask |&lt;br&gt;| Database | PostgreSQL |&lt;br&gt;| AI/ML | Python + OpenAI/scikit-learn |&lt;br&gt;| Deploy | Vercel + Railway/Render |" style="rounded=1;whiteSpace wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1;fontSize=10;align=left;verticalAlign=top;spacingLeft=10;spacingTop=10;fontFamily=Courier New;" vertex="1" parent="1">
+          <mxGeometry x="360" y="720" width="320" height="170" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
