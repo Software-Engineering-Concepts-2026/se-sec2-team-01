@@ -22,3 +22,54 @@
 - สมาชิกแต่ละคนเป็นผู้ให้ข้อมูลและรับผิดชอบตรวจสอบไฟล์ส่วนตัวของตนเอง เช่น ชื่อเล่น ประสบการณ์ Broken Window และ Pragmatic Promise ก่อน merge
 - ทีมตรวจและปรับข้อความที่ AI เสนอให้ตรงกับบริบทของ Good Night และประสบการณ์จริงของสมาชิก ไม่ส่งข้อความที่ยังไม่ได้อ่านหรือทำความเข้าใจ
 - ไม่ใช้ AI ตัดสินใจแทนทีม และไม่ใช้ข้อมูลส่วนตัวของสมาชิกคนอื่น ข้อมูลบัญชี รหัสผ่าน หรือ secret ใน prompt
+
+## Lab 3 — การใช้ AI กับ Requirements ของ Good Night
+
+### งานที่ทีมใช้ AI ช่วย
+
+- ใช้ AI ช่วยรวบรวมข้อมูลจาก persona เดิมของต้นและปุ๊กให้เป็นเอกสารเดียว โดยคงรายละเอียดจาก source เดิมและทำเครื่องหมายข้อมูลที่ยังต้อง validate
+- ใช้ AI ช่วยแตกเหตุการณ์จากการใช้งานจริงของโปรเจกต์ เช่น ต้นดู dashboard ตอนเช้า เปรียบเทียบพฤติกรรมรายสัปดาห์ และปุ๊กบันทึกคืนที่ทำงานดึก
+- ใช้ AI ช่วยตรวจว่าแต่ละ scenario เชื่อมกับ user story ใด และช่วยจัดรูปแบบ story, acceptance criteria และ issue reference ให้อ่านต่อได้ง่าย
+- ใช้ AI ช่วยเสนอวิธีเขียน NFR ของ dashboard, insight และการเก็บข้อมูลให้มีเกณฑ์วัดผลและวิธีทดสอบที่ชัดเจน
+
+### ตัวอย่างการใช้กับงานของทีม
+
+1. ให้ AI ตรวจข้อมูล persona ของต้นและปุ๊กเทียบกับไฟล์ต้นทาง แล้วระบุเฉพาะส่วนที่ขาดหรือเป็น assumption โดยไม่ให้เติมประวัติส่วนตัวขึ้นเอง
+2. ให้ AI ช่วยตรวจว่า SC-T03 และ SC-P02 นำไปสู่ story เรื่องการเปรียบเทียบ tag กับคุณภาพการนอนได้ครบทั้ง happy path และกรณีข้อมูลไม่พอหรือไม่
+3. ให้ AI ช่วยทบทวนเกณฑ์ของ dashboard และ recommendation เช่น p95 response time, จำนวน records ที่รองรับ และ test coverage ว่าสามารถทดสอบได้จริงหรือไม่
+
+### การตรวจสอบและความรับผิดชอบของทีม
+
+- ทีมเป็นผู้เลือกใช้ persona เดิม 2 คน คือ ต้นและปุ๊ก และเป็นผู้ตัดสินใจ scope, ลำดับ Must/Should, estimate รวมถึงตัวเลขเป้าหมายของ NFR
+- ทีมตรวจเนื้อหาที่ AI ช่วยร่างกับ Project Proposal, persona ต้นทาง, scenario และโค้ด/โครงสร้าง repository ก่อนนำไปใช้ในเอกสาร
+- AI ช่วยเรื่องการเรียบเรียงและตรวจความครบถ้วนเท่านั้น ไม่ได้ยืนยันว่า NFR ผ่านการทดสอบหรือเลือก requirement แทนทีม
+- ส่วน Education ที่ไม่มีข้อมูลใน persona ต้นทางถูกระบุเป็นข้อมูลที่ต้อง validate แทนการเดาหรือเติมรายละเอียดของบุคคล
+- ไม่ส่งรหัสนิสิต ข้อมูลบัญชี คะแนนจริง รหัสผ่าน หรือ secret เข้าไปใน prompt
+
+## Lab 5 — การใช้ AI กับ Architectural Artifacts ของ Good Night
+
+### งานที่ทีมใช้ AI ช่วย
+
+- ใช้ ChatGPT/Codex ช่วยร่างโครง Mermaid สำหรับ C4 Level 1 และ Level 2 แล้วตรวจให้ชื่อผู้ใช้, external system, container และ edge สอดคล้องกับ Good Night
+- ใช้ AI ช่วยจัดตาราง tech stack ให้มี layer, rationale และ alternative ครบตาม rubric โดยผูกเหตุผลกับ manual sleep log, dashboard, NFR และข้อจำกัดของทีม
+- ใช้ AI ช่วยตั้งคำถาม challenge ADR เช่น operational overhead, data boundary, deployment trade-off และเงื่อนไขที่ควรแยก Insight Service ในอนาคต
+- ใช้ AI ช่วยตรวจความเชื่อมโยงระหว่าง C4, ADR, Project Proposal และ user stories ก่อนเตรียมส่ง PR
+
+### ตัวอย่าง prompts ที่ทีมใช้
+
+1. “ช่วยร่าง C4Context และ C4Container แบบ Mermaid สำหรับ Good Night โดยมีต้น ปุ๊ก Web App, Backend API, Insight Service, PostgreSQL และ external integrations พร้อม label ของทุก edge”
+2. “ช่วยตรวจ tech stack ของระบบ sleep dashboard ว่าแต่ละ layer มี rationale เชิง context และ alternative หรือยัง โดยอย่าเลือก technology แทนทีม”
+3. “ช่วย challenge ADR ที่เลือก modular monolith และแยก Insight Service boundary ว่ามี consequence, operational risk และเงื่อนไขการเปลี่ยนสถาปัตยกรรมอะไรที่ควรบันทึก”
+
+### ส่วนที่รับจาก AI และการตรวจสอบ
+
+- AI ช่วยเสนอ Mermaid syntax skeleton, รูปแบบตาราง และคำถามสำหรับ challenge ADR เป็น draft เท่านั้น
+- ไม่มีส่วนตัดสินใจด้าน architecture ที่ทีมรับจาก AI แบบไม่แก้ ทีมเป็นผู้เลือก boundary, technology, alternative และ trade-off แล้วปรับถ้อยคำให้ตรงกับ Proposal, persona และ repository จริง
+- ทีมต้องตรวจ Mermaid ให้ render ได้และต้องอธิบายได้ทุก component/relationship ก่อน merge; AI ไม่ได้ยืนยันผลการ render หรือความถูกต้องของ implementation แทนทีม
+
+### Team verification and responsibility
+
+- ทีมเป็นผู้ตัดสินใจเลือก React + Vite, Flask, PostgreSQL, JWT, Docker Compose และแนวทาง modular monolith; AI ไม่มีสิทธิ์ตัดสินใจแทน
+- สมาชิกตรวจว่า C4 ไม่สัญญา feature ที่อยู่นอก scope เช่น real-time wearable sync และตรวจว่า optional integration ถูกระบุเป็น future boundary
+- ทีมตรวจ rationale กับ NFR เรื่อง authorization, data integrity, response time และ deployment ก่อนนำไปใช้ในเอกสาร
+- ไม่ส่งรหัสนิสิต ข้อมูลผู้ใช้จริง token รหัสผ่าน หรือ secret เข้าไปใน prompt

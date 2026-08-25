@@ -1,12 +1,13 @@
 # ADR-001: การเลือกชุดเทคโนโลยีหลัก (Tech Stack Selection)
 
-**สถานะ:** ยอมรับ (Accepted)  
-**วันที่:** 2026-07-21  
+## Status (สถานะ)
+
+**Accepted — 2026-07-21**
 **ผู้ตัดสินใจ:** ทีมพัฒนา (โปรเจกต์ Goodnight)
 
 ---
 
-## บริบท (Context)
+## Context (บริบท)
 
 โปรเจกต์ของเรา **Goodnight** เป็น **แพลตฟอร์มเว็บสำหรับเพิ่มประสิทธิภาพการนอนหลับ** ที่ออกแบบมาสำหรับ **บุคคลที่ให้ความสำคัญด้านสุขภาพ** ซึ่งต้องการติดตาม เข้าใจ และปรับปรุงคุณภาพการนอนของตนเองผ่านข้อมูลเชิงลึกที่ขับเคลื่อนด้วยข้อมูล (data-driven insights) และคำแนะนำที่เหมาะสมกับแต่ละบุคคล ผู้ใช้หลักของเรา ได้แก่:
 
@@ -32,7 +33,7 @@
 
 ---
 
-## การตัดสินใจ (Decision)
+## Decision (การตัดสินใจ)
 
 เราได้ตัดสินใจนำชุดเทคโนโลยีหลักมาใช้ ดังนี้:
 
@@ -50,6 +51,8 @@
 | **Version Control** | **GitHub** | Repository hosting พร้อม CI/CD ผ่าน GitHub Actions |
 
 ### รูปแบบสถาปัตยกรรม (Architecture Pattern)
+
+สำหรับ scope ปัจจุบัน ทีมเลือก **client-server architecture แบบ modular monolith สำหรับ core API** และกำหนด Insight Service เป็น service boundary ภายในระบบ การตัดสินใจนี้ทำให้ทีมยัง demo end-to-end ได้ง่าย แต่มีจุดแยกชัดเจนสำหรับ analytics หาก NFR หรือภาระงานจริงในอนาคตพิสูจน์ว่าควรแยก deploy
 
 **Client-Server Architecture พร้อม Separation of Concerns:**
 
@@ -70,7 +73,15 @@
 
 ---
 
-## ทางเลือกที่พิจารณา (Options Evaluated)
+## Alternatives Considered (ทางเลือกที่พิจารณา)
+
+### รูปแบบการแยกระบบ
+
+| Option | เหตุผลที่พิจารณา | ผลการตัดสินใจ |
+| --- | --- | --- |
+| **Modular monolith + Insight boundary (เลือกใช้)** | ลด operational overhead สำหรับทีมเล็กและยังรองรับการแบ่ง responsibility ตาม C4 | ✅ ถูกเลือก |
+| Full microservices | แยก deploy/scale ได้ละเอียด แต่เพิ่ม network, observability และ deployment overhead ก่อนที่ทีมจะมี evidence จาก traffic/NFR | ❌ ยังไม่เลือก |
+| Serverless functions | เริ่มต้นง่ายและ scale ตามการเรียกใช้ แต่เพิ่ม cold-start และทำให้ local end-to-end debugging ยากขึ้น | ❌ ยังไม่เลือก |
 
 ### ทางเลือก Frontend
 
@@ -101,7 +112,7 @@
 
 ---
 
-## ผลที่ตามมา (Consequences)
+## Consequences (ผลที่ตามมา)
 
 ### ผลเชิงบวก (Positive Consequences)
 

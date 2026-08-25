@@ -1,5 +1,25 @@
 # Reflection
 
+## Lab 5 Reflection (Post-quiz 5)
+
+### 1. ADR: เหตุผลต้องมาก่อนรายการ technology
+
+การเขียน ADR ทำให้ทีมเห็นว่า tech stack ไม่ใช่รายการ library ที่เลือกตามความคุ้นเคย แต่เป็นคำตอบต่อ context ของ Good Night เช่น ทีมขนาดเล็กต้อง demo end-to-end, core scope ยังเป็น manual sleep log และต้องรักษาความถูกต้องของข้อมูลสุขภาพ เราจึงเลือก modular monolith สำหรับ core API และวาง Insight Service เป็น boundary ที่แยกได้ในอนาคต แทนการเริ่มด้วย full microservices ที่มี operational overhead สูงเกินความจำเป็นตอนนี้
+
+### 2. C4: แยกมุมมอง system context กับ container
+
+System Context ช่วยให้ทีมเห็นผู้ใช้ ต้นกับปุ๊ก และ external systems โดยไม่หลุดไปคุยเรื่อง implementation เร็วเกินไป ส่วน Container Diagram ช่วยระบุ responsibility ของ Web App, Backend API, Insight Service และ Sleep Database พร้อม protocol ระหว่างกัน การแยกสองระดับนี้ทำให้เห็นชัดว่า Web App ไม่ควรอ่าน database โดยตรง และทุกข้อมูลสุขภาพต้องผ่าน authorization boundary ของ API
+
+### 3. Tech Stack: trade-off ต้องตรวจสอบต่อได้
+
+เหตุผลของ PostgreSQL, Flask, React + Vite และ Docker Compose เชื่อมกับ NFR เรื่อง data integrity, response time, deploy ซ้ำได้ และการพัฒนา dashboard ไม่ใช่แค่คำว่า “ทีมถนัด” ขณะเดียวกันเราบันทึก trade-off ไว้ด้วย เช่น Flask ต้องกำหนด project structure เอง, PostgreSQL setup หนักกว่า SQLite และ OpenAI API เป็น optional adapter ไม่ใช่ dependency ของทุก acceptance criteria
+
+### สิ่งที่จะปรับใน Sprint ถัดไป
+
+ทีมจะ render Mermaid ใน PR preview และ cross-review ว่าชื่อ component, edge label, API boundary และ tech stack ตรงกับ implementation จริง ก่อนเริ่มแยก service หรือเพิ่ม external integration
+
+---
+
 ## Lab 6 Reflection (Post-quiz 6)
 
 ### 1. Dockerfile Refinement (B1)
