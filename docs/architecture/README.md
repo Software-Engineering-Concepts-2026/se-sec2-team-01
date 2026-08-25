@@ -39,6 +39,8 @@ Goodnight เป็น **แพลตฟอร์มเว็บสำหรั�
 
 ### ระดับ 1: System Context (C1)
 
+**Lab 5 Mermaid artifact:** [c4-context.md](c4-context.md)
+
 **ไฟล์:** `diagrams/goodnight-c1-context.xml` (รูปแบบ draw.io)
 
 แผนภาพ **System Context** แสดงระบบของเราเป็นกล่องดำ (black box) โดยโฟกั斯ที่:
@@ -88,6 +90,8 @@ Goodnight เป็น **แพลตฟอร์มเว็บสำหรั�
 ---
 
 ### ระดับ 2: Container Diagram (C2)
+
+**Lab 5 Mermaid artifact:** [c4-container.md](c4-container.md)
 
 **ไฟล์:** `diagrams/goodnight-c2-container.xml` (รูปแบบ draw.io)
 
@@ -155,6 +159,8 @@ Architecture Decision Records บันทึก **การตัดสิน�
 ---
 
 ## สรุป Tech Stack
+
+ตารางฉบับที่ใช้เป็น artifact ของ Lab 5 อยู่ที่ [tech_stack.md](tech_stack.md) โดยมี rationale และ alternative ที่ผูกกับ context ของ Good Night
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
