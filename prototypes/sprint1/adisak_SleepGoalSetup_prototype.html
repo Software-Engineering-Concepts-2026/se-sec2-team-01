@@ -85,7 +85,7 @@
             </label>
 
             <label>
-                <input type="checkbox" value="คสามรู้สึก/ความเครียด">
+                <input type="checkbox" value="ความรู้สึก/ความเครียด">
                 ความรู้สึก/ความเครียด
             </label>
 
@@ -97,34 +97,6 @@
 
 </div>
 
-<script>
-function saveData() {
-
-    // ดึงข้อมูล
-    const age = document.getElementById("age").value;
-    const sleepTime = document.getElementById("sleepTime").value;
-
-    // ดึงกิจกรรมที่เลือก
-    const activities = [];
-
-    document.querySelectorAll(".activities input[type='checkbox']").forEach(function(item){
-        if(item.checked){
-            activities.push(item.value);
-        }
-    });
-
-    // บันทึกลง Local Storage
-    localStorage.setItem("age", age);
-    localStorage.setItem("sleepTime", sleepTime);
-    localStorage.setItem("activities", JSON.stringify(activities));
-
-    // แจ้งเตือน
-    alert("บันทึกข้อมูลเรียบร้อย");
-
-    // ถ้าต้องการไปอีกหน้า ให้เอา // ออก
-    // window.location.href = "result.html";
-}
-</script>
-
+<script src="adisak_SleepGoalSetup_script.js"></script>
 </body>
 </html>
