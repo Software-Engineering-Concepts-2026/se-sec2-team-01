@@ -8,7 +8,10 @@ __pycache__/
 *.py[cod]
 *$py.class
 venv/
+.venv/
 ENV/
+pyrightconfig.json
+
 
 # Node.js
 node_modules/
