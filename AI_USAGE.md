@@ -23,7 +23,93 @@
 - ทีมตรวจและปรับข้อความที่ AI เสนอให้ตรงกับบริบทของ Good Night และประสบการณ์จริงของสมาชิก ไม่ส่งข้อความที่ยังไม่ได้อ่านหรือทำความเข้าใจ
 - ไม่ใช้ AI ตัดสินใจแทนทีม และไม่ใช้ข้อมูลส่วนตัวของสมาชิกคนอื่น ข้อมูลบัญชี รหัสผ่าน หรือ secret ใน prompt
 
+## Lab 2 — Project Proposal and User Personas Usage
+
+### งานที่ทีมใช้ AI ช่วย
+
+- ใช้ ChatGPT ช่วยร่าง project proposal โดยให้ AI รวบรวมข้อมูลจากความเห็นของทีม เกี่ยวกับเธมที่เลือก (The Quantified Self Dashboard) และให้เป็นเอกสารเดียวที่มีโครงสร้าง
+- ใช้ AI ช่วยพัฒนารายละเอียด 2 personas (Ton — Health-Optimizing User และ Pook — Sleep-Challenged User) โดยให้ AI ขยายชีวประวัติ, งาน, ปัญหา, ความต้องการ จากข้อมูลเบื้องต้นที่ทีมให้
+- ใช้ AI ช่วยจัดรูปแบบ MoSCoW priorities ให้ชัดเจนและมีตรรกะ โดยอ้างอิงกับ value proposition ของทีม
+- ใช้ AI ช่วยระบุและเขียน Risks & Assumptions ให้สมบูรณ์ เช่น สมมติฐานว่าผู้ใช้มีวินัยในการบันทึกข้อมูล และความเสี่ยงเรื่อง high friction หรือ data inaccuracy
+
+### ตัวอย่างการใช้กับงานของทีม
+
+1. ให้ AI ร่าง project proposal skeleton โดยให้ AI ข้อมูล: ชื่อโปรเจกต์ = "Good Night", theme = "Quantified Self Dashboard", 2 personas = Ton และ Pook, value prop = "help users understand root cause of sleep quality through data visualization" แล้วให้ AI ขยายเป็น proposal เต็มรูปแบบ
+2. ให้ AI ช่วยพัฒนา Ton persona โดยเล่าให้ AI ฟังว่า "Ton อายุ 34, Product Manager ที่ FinTech, ต้องการ preventive optimization เพราะประวัติครอบครัว" แล้วให้ AI เขียน bio, job context, education/knowledge context ที่ยาวพอและตรงกับบริบท
+3. ให้ AI ช่วยขยาย Pook persona โดยบอก "Pook อายุ 34, Senior Marketing Manager, มีปัญหานอนไม่หลับที่เพิ่มขึ้นเมื่อเลื่อนตำแหน่ง, มีปัญหา high friction กับแอป tracking ปัจจุบัน" แล้วให้ AI เขียนรายละเอียดที่เชื่อมกับปัญหาจริง
+4. ให้ AI ช่วยจัดรูป MoSCoW ให้มีเหตุผล: Must = sleep log + dashboard, Should = activity tagging, Could = bedtime reminder, Won't = real-time wearable sync
+
+### การตรวจสอบและความรับผิดชอบของทีม
+
+- ทีมเป็นผู้เลือกเธมจาก 4 theme ที่ให้มา และเป็นผู้ตัดสินใจ persona ทั้งสาระและเชิงลึก (มีปัญหาแบบไหน, อายุเท่าไร, อาชีพอะไร, motivation ตรงไหน)
+- ทีมตรวจเนื้อหาที่ AI ร่างว่าตรงกับ decision ของทีมจริงไหม เช่น ตรวจว่า Ton bio ที่ AI ช่วยเขียน ไม่ได้สร้างรายละเอียดปลอมขึ้นใหม่ แต่เป็นการขยายจากข้อเท็จจริงที่ทีมเล่า
+- AI ช่วยเรื่องการเรียบเรียง formatting และ completeness checklist เท่านั้น ไม่ได้ตัดสินใจ value proposition, scope priorities หรือสมมติฐานแทนทีม
+- ทีมตรวจ MoSCoW priorities ว่าตรงกับ value prop ที่ทีมเลือกจริงไหม และตรวจ Risks ว่าเป็นความเสี่ยงจริงของทีมหรือแค่ generic risks
+- ไม่ส่งรหัสนิสิต ข้อมูลส่วนตัว ที่อยู่ หรือ contact info ของสมาชิกทีมเข้าไปใน prompt แม้ว่า personas เป็นสมมติฐาน
+
 ## Lab 3 — การใช้ AI กับ Requirements ของ Good Night
+
+### งานที่ทีมใช้ AI ช่วย
+
+- ใช้ AI ช่วยรวบรวมข้อมูลจาก persona เดิมของต้นและปุ๊กให้เป็นเอกสารเดียว โดยคงรายละเอียดจาก source เดิมและทำเครื่องหมายข้อมูลที่ยังต้อง validate
+- ใช้ AI ช่วยแตกเหตุการณ์จากการใช้งานจริงของโปรเจกต์ เช่น ต้นดู dashboard ตอนเช้า เปรียบเทียบพฤติกรรมรายสัปดาห์ และปุ๊กบันทึกคืนที่ทำงานดึก
+- ใช้ AI ช่วยตรวจว่าแต่ละ scenario เชื่อมกับ user story ใด และช่วยจัดรูปแบบ story, acceptance criteria และ issue reference ให้อ่านต่อได้ง่าย
+- ใช้ AI ช่วยเสนอวิธีเขียน NFR ของ dashboard, insight และการเก็บข้อมูลให้มีเกณฑ์วัดผลและวิธีทดสอบที่ชัดเจน
+
+### ตัวอย่างการใช้กับงานของทีม
+
+1. ให้ AI ตรวจข้อมูล persona ของต้นและปุ๊กเทียบกับไฟล์ต้นทาง แล้วระบุเฉพาะส่วนที่ขาดหรือเป็น assumption โดยไม่ให้เติมประวัติส่วนตัวขึ้นเอง
+2. ให้ AI ช่วยตรวจว่า SC-T03 และ SC-P02 นำไปสู่ story เรื่องการเปรียบเทียบ tag กับคุณภาพการนอนได้ครบทั้ง happy path และกรณีข้อมูลไม่พอหรือไม่
+3. ให้ AI ช่วยทบทวนเกณฑ์ของ dashboard และ recommendation เช่น p95 response time, จำนวน records ที่รองรับ และ test coverage ว่าสามารถทดสอบได้จริงหรือไม่
+
+### การตรวจสอบและความรับผิดชอบของทีม
+
+- ทีมเป็นผู้เลือกใช้ persona เดิม 2 คน คือ ต้นและปุ๊ก และเป็นผู้ตัดสินใจ scope, ลำดับ Must/Should, estimate รวมถึงตัวเลขเป้าหมายของ NFR
+- ทีมตรวจเนื้อหาที่ AI ช่วยร่างกับ Project Proposal, persona ต้นทาง, scenario และโค้ด/โครงสร้าง repository ก่อนนำไปใช้ในเอกสาร
+- AI ช่วยเรื่องการเรียบเรียงและตรวจความครบถ้วนเท่านั้น ไม่ได้ยืนยันว่า NFR ผ่านการทดสอบหรือเลือก requirement แทนทีม
+- ส่วน Education ที่ไม่มีข้อมูลใน persona ต้นทางถูกระบุเป็นข้อมูลที่ต้อง validate แทนการเดาหรือเติมรายละเอียดของบุคคล
+- ไม่ส่งรหัสนิสิต ข้อมูลบัญชี คะแนนจริง รหัสผ่าน หรือ secret เข้าไปใน prompt
+
+## Lab 4 — Rapid Prototyping with AI Usage
+
+### Tools and tasks
+
+- ทีมใช้ GitHub Copilot/ChatGPT ช่วยสร้าง HTML form skeleton สำหรับ sleep goal setup prototype
+- ใช้ AI ช่วยเสนอวิธีเขียน CSS styling เช่น flexbox, dark theme variables, layout patterns
+- ใช้ AI ช่วยเสนอ JavaScript logic สำหรับ tab switching, localStorage, form handling
+- ใช้ AI ช่วยตรวจว่า prototype UI flow ครบถ้วนและสามารถเชื่อมกับ user story ได้
+
+### Example prompts
+
+1. "สร้าง HTML form สำหรับการตั้งค่าเป้าหมายการนอน โดยมี dropdown อายุ, time picker, activity checkboxes และ submit button"
+2. "ช่วยออกแบบ CSS layout สำหรับ dashboard sidebar navigation + topbar + main content โดยใช้ flexbox และ dark theme colors"
+3. "สร้าง JavaScript function สำหรับ tab switching โดยใช้ addEventListener เมื่อคลิก tab button ให้ element เปลี่ยน class"
+
+### ส่วนที่รับจาก AI
+
+**Adisak (Sleep Goal Setup):**
+- AI generate: HTML form skeleton ทั้งหมด พร้อม input types, labels, button
+- AI generate: CSS styling เช่น container, section, label, input styling
+- AI generate: JavaScript localStorage.setItem/getItem สำหรับบันทึกข้อมูล
+
+**Danudet (Health Tracking):**
+- AI generate: HTML form structure + tab buttons + history table template
+- AI generate: CSS card layout, table styling, tab active state styling
+- AI generate: JavaScript tab switching logic + form submission handler
+
+**Rungrawi (Dashboard):**
+- AI generate: Sidebar navigation HTML structure พร้อม buttons
+- AI generate: CSS dark theme variables + sidebar styling + card layout
+- AI generate: JavaScript greeting logic, stat display, chart rendering
+
+### Team verification and responsibility
+
+- ทีมใช้ AI เพื่อช่วยเร็วขึ้นเท่านั้น ไม่ได้เขียน code เอง
+- ทีมตรวจสอบ code ที่ AI generate ว่ารันได้จริงในเบราว์เซอร์
+- ทีมทดสอบ interactive behavior ทั้ง 3 prototype (form submit, tab switching, localStorage)
+- ไม่ใช้ AI ตัดสินใจเลือก feature/scope — ทีมกำหนด scope จาก Lab 3 user stories
+- ไม่ส่งข้อมูลส่วนตัว รหัสนิสิต password หรือ secret เข้าไปใน prompt
+- ทีมรู้ว่า prototype คือ PROTOTYPE (ทิ้งได้) ที่จะ discard หลัง feedback แล้วเขียน production code ใหม่ใน Sprint 2
 
 ### งานที่ทีมใช้ AI ช่วย
 
