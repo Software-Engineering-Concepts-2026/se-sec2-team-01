@@ -30,8 +30,8 @@ This section explains how to get a local copy of the project up and running for 
     *(This section will be updated in later weeks when using Docker Compose)*
     ```bash
     # Build from the repository root using the Lab 6 Dockerfile
-    docker build -t your-team/stats-service:v0.1.0 .
-    docker run --rm -p 8000:8000 your-team/stats-service:v0.1.0
+    docker build -t adisakx2548/stats-service:v0.1.0 .
+    docker run --rm -p 8000:8000 adisakx2548/stats-service:v0.1.0
     ```
 
 ---
