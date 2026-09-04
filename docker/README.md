@@ -8,12 +8,15 @@
 | รายการ | ค่า |
 | --- | --- |
 | Service | `stats-service` |
+| Published image | `adisakx2548/stats-service:v0.1.0` |
+| Registry | Docker Hub (Public) |
 | Tag สำหรับส่งงาน | `v0.1.0` |
 | Base image | `python:3.12-slim` |
 | Build strategy | Multi-stage (`builder` และ `runtime`) |
 | Runtime user | `nobody` (ไม่รันเป็น root) |
 | Container port | `8000` |
-| Image size | ต้องตรวจและบันทึกจาก `docker image ls` ก่อนส่ง; เกณฑ์คือไม่เกิน 500 MB |
+| Disk usage | `228 MB` (ต่ำกว่าเกณฑ์ 500 MB) |
+| Content size | `55.2 MB` |
 
 Dockerfile จะติดตั้ง dependencies ใน stage `builder` แล้วคัดลอกเฉพาะ virtual environment
 และ `services/stats-service/app.py` ไปยัง runtime image เพื่อลดไฟล์ที่ไม่จำเป็นใน final image
@@ -23,8 +26,8 @@ Dockerfile จะติดตั้ง dependencies ใน stage `builder` แ�
 รันคำสั่งจากโฟลเดอร์ root ของ repository:
 
 ```bash
-docker build -t <registry-user>/stats-service:v0.1.0 .
-docker run --rm --name stats-service -p 8000:8000 <registry-user>/stats-service:v0.1.0
+docker build -t adisakx2548/stats-service:v0.1.0 .
+docker run --rm --name stats-service -p 8000:8000 adisakx2548/stats-service:v0.1.0
 ```
 
 ตรวจ endpoint ใน terminal อีกหน้าต่าง:
@@ -44,7 +47,7 @@ curl -i http://localhost:8000/health
 ตรวจ image และ user ได้ด้วย:
 
 ```bash
-docker image ls <registry-user>/stats-service:v0.1.0
+docker image ls adisakx2548/stats-service:v0.1.0
 docker inspect stats-service --format '{{.Config.User}}'
 ```
 
@@ -54,7 +57,7 @@ docker inspect stats-service --format '{{.Config.User}}'
 
 ```bash
 docker login
-docker push <registry-user>/stats-service:v0.1.0
+docker push adisakx2548/stats-service:v0.1.0
 ```
 
 ห้ามใส่ password, token หรือ `.env` ลงใน image หรือ commit โดย `.dockerignore` จะกันไฟล์ดังกล่าวออกจาก build context
