@@ -23,24 +23,28 @@ System Context ช่วยให้ทีมเห็นผู้ใช้ ต�
 ## Lab 6 Reflection (Post-quiz 6)
 
 ### 1. Dockerfile Refinement (B1)
-จากการดราฟต์ Dockerfile ในคาบบรรยาย เราได้นำมาปรับปรุงเป็น Production-grade Dockerfile โดยใช้เทคนิค **Multi-stage build** บน Base image `python:3.11-slim`:
-* **Layer Caching & Optimization:** แยกขั้นตอนการติดตั้ง Dependencies (Stage `builder`) ออกจาก Runtime Environment (Stage `runner`) ทำให้ Image มีขนาดกะทัดรัด (ไม่เกินเกณฑ์ 500 MB) และลดเวลาในการ Build
-* **Security & Non-root User:** เปลี่ยนจากการรันด้วย `root` ไปใช้ `USER appuser` เพื่อลด Attack Surface และปิดช่องโหว่ด้านความปลอดภัยตามแนวคิด Least Privilege (ESP §7)
-* **Configuration:** ไม่คัดลอกไฟล์ `.env` เข้าไปใน Image เพื่อป้องกัน Secret Leakage โดยส่งค่าผ่าน Environment Variables (`-e`) ขณะสั่ง `docker run` แทน
+จาก Dockerfile เดิมของ `stats-service` ทีมปรับโครงสร้างให้ตรงกับ deliverable ของ Lab 6 โดยใช้ **multi-stage build** บน `python:3.12-slim` แยก stage ติดตั้ง dependency ออกจาก runtime image:
+
+* **Layer separation:** stage `builder` สร้าง virtual environment ที่ `/opt/venv` ส่วน stage `runtime` คัดลอกเฉพาะ virtual environment และ `app.py` ที่จำเป็น
+* **Security:** runtime ใช้ `USER nobody` แทน root และ `.dockerignore` กัน `.env`, Git metadata, tests, cache และไฟล์ IDE ออกจาก build context
+* **Reproducibility:** root Dockerfile กำหนด base tag, working directory, port `8000` และคำสั่ง Uvicorn ไว้ชัดเจน
+* **สิ่งที่ต้องยืนยันต่อ:** ต้อง build image จริงและบันทึกขนาดจาก `docker image ls` ก่อนสรุปว่าอยู่ต่ำกว่าเกณฑ์ 500 MB
 
 ---
 
 ### 2. Service Decomposition & Rule of Twos (B2)
-ทีมของเราเลือกนำ **`stats-service`** มาทำ Containerize ซึ่งผ่านการตรวจสอบตามเกณฑ์ **Microservices Rule of Twos** (ESP §6):
-* **Data Boundary:** Service นี้จัดการข้อมูลสถิติและการประมวลผลเฉพาะด้านอย่างเป็นเอกเทศ ไม่แชร์ Database ตรงกับ Service อื่น
-* **Independent Scalability:** เนื่องจากเป็น Stateless Service การแยกเป็น Container ทำให้ทีมสามารถ Deploy, Scale เพื่อรองรับภาระงานเฉพาะส่วน หรือ Rollback ได้อย่างอิสระโดยไม่กระทบต่อ Core Service อื่นๆ ของระบบ
+ทีมเลือก `stats-service` เพราะขอบเขตปัจจุบันเป็น stateless API ขนาดเล็กที่มี responsibility ชัดเจน คือรายงานสถานะของ service และ health endpoint การ containerize จึงช่วยให้ทีมกำหนด runtime, port และ dependency ได้ซ้ำกันทุกเครื่อง
+
+อย่างไรก็ตาม Rule of Twos ในเอกสารนี้เป็นเหตุผลของ boundary ที่ทีมกำลังเตรียมไว้ ไม่ใช่หลักฐานว่าระบบมี microservice หลายตัวหรือมี database แยกใช้งานจริงแล้ว
 
 ---
 
 ### 3. REST Endpoint Consistency
-Endpoint ภายใน Container ถูกรันผ่าน Uvicorn Web Server ที่พอร์ต `8000` โดยมีการทำ Port Mapping ออกมาให้เข้าถึงได้ผ่าน Localhost อย่างถูกต้อง:
-* Service ส่งผลลัพธ์สถานะเป็น **HTTP 2xx (200 OK)** เมื่อระบบพร้อมทำงาน
-* โครงสร้างของ Containerized Service นี้ถูกออกแบบให้เป็นไปตามมาตรฐาน RESTful API พร้อมที่จะเชื่อมต่อผ่าน API Gateway หรือนำไปทำ Orchestration ร่วมกับ Service อื่นๆ ในระบบ Cloud ต่อไป
+Container จะรันผ่าน Uvicorn ที่พอร์ต `8000` และ map ออกมาด้วย `-p 8000:8000` ให้ตรงกับ application contract:
+
+* `GET /` ต้องตอบ `200` พร้อมข้อมูล `stats-service` และสถานะ `ok`
+* `GET /health` ต้องตอบ `200` พร้อมสถานะ `healthy`
+* ผล build/run, image size และ registry ยังต้องให้สมาชิกที่มี Docker และสิทธิ์ Registry ตรวจจริงก่อนแนบเป็นหลักฐานใน PR
 
 ---
 

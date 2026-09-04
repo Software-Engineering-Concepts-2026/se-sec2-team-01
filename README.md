@@ -29,10 +29,9 @@ This section explains how to get a local copy of the project up and running for 
 2.  **Run the services:**
     *(This section will be updated in later weeks when using Docker Compose)*
     ```bash
-    # Example for a single service
-    cd services/stats-service
-    docker build -t your-team/stats-service .
-    docker run -p 5001:5000 your-team/stats-service
+    # Build from the repository root using the Lab 6 Dockerfile
+    docker build -t your-team/stats-service:v0.1.0 .
+    docker run --rm -p 8000:8000 your-team/stats-service:v0.1.0
     ```
 
 ---
