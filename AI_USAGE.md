@@ -159,3 +159,29 @@
 - สมาชิกตรวจว่า C4 ไม่สัญญา feature ที่อยู่นอก scope เช่น real-time wearable sync และตรวจว่า optional integration ถูกระบุเป็น future boundary
 - ทีมตรวจ rationale กับ NFR เรื่อง authorization, data integrity, response time และ deployment ก่อนนำไปใช้ในเอกสาร
 - ไม่ส่งรหัสนิสิต ข้อมูลผู้ใช้จริง token รหัสผ่าน หรือ secret เข้าไปใน prompt
+
+## Lab 6 — First Container Usage
+
+### งานที่ทีมใช้ AI ช่วย
+
+- ใช้ ChatGPT/Codex ช่วยเสนอ skeleton ของ Dockerfile สำหรับ `stats-service` ที่ใช้ Python/FastAPI, slim base image, multi-stage build, non-root user และ port `8000`
+- ใช้ AI ช่วยอธิบายหน้าที่ของแต่ละ layer และช่วยตรวจว่าการ build จาก repository root คัดลอกเฉพาะ `requirements.txt` กับ `app.py` ที่จำเป็น
+- ใช้ AI ช่วยทบทวนรายการ `.dockerignore`, คำสั่ง build/run, port mapping และ trade-off ระหว่าง Container กับ VM
+
+### ตัวอย่าง prompts ที่ทีมใช้
+
+1. “ช่วยร่าง Dockerfile แบบ multi-stage สำหรับ Python FastAPI โดยใช้ `python:3.12-slim`, ติดตั้ง dependency ใน builder stage, รันด้วย non-root user และเปิด port 8000”
+2. “ช่วยตรวจว่า root Dockerfile ที่ copy service จาก `services/stats-service` มีความเสี่ยงเรื่อง secret, tests, cache หรือไฟล์ที่ไม่จำเป็นใน image หรือไม่”
+3. “ช่วยอธิบายวิธีตรวจ `/` และ `/health`, image size และ user ที่ container ใช้งาน หลังจาก `docker run`”
+
+### ส่วนที่รับจาก AI และการตรวจสอบ
+
+- AI ช่วยเสนอรูปแบบ multi-stage, virtual environment, `.dockerignore` และคำสั่งตรวจสอบเป็น draft
+- ทีมเป็นผู้เลือก `stats-service`, Python 3.12, port 8000, tag `v0.1.0` และขอบเขตไฟล์ที่ให้เข้า image
+- ทีมต้อง build และ run ด้วย Docker จริง ตรวจ HTTP response และบันทึก image size ก่อนระบุผลใน PR
+
+### Team verification and responsibility
+
+- ทีมตรวจ Dockerfile ทุกบรรทัดกับ source จริง ไม่คัดลอก `.env`, token, password หรือข้อมูลผู้ใช้เข้า image
+- ทีมต้องยืนยันว่า runtime ใช้ user `nobody`, endpoint ตอบ 2xx, image size ไม่เกิน 500 MB และ registry เป็น public ตามเกณฑ์
+- AI ไม่ได้ยืนยันผล build, registry หรือ security scan แทนทีม และจะไม่รายงานผลดังกล่าวจนกว่าจะทดสอบจริง
