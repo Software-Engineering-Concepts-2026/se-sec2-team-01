@@ -1,18 +1,18 @@
 # syntax=docker/dockerfile:1
 
-# Stage 1: install Python dependencies in an isolated virtual environment.
+# ขั้นตอนที่ 1: ติดตั้งแพ็กเกจ Python ในสภาพแวดล้อมเสมือนที่แยกไว้
 FROM python:3.12-slim AS builder
 
 ENV VIRTUAL_ENV=/opt/venv
 WORKDIR /build
 
-# Copy the dependency manifest first so this layer can be cached independently.
+# คัดลอกรายการแพ็กเกจก่อน เพื่อให้ Docker ใช้ชั้นแคชนี้ซ้ำได้เมื่อ source code ไม่เปลี่ยน
 COPY services/stats-service/requirements.txt ./requirements.txt
 
 RUN python -m venv "${VIRTUAL_ENV}" \
     && "${VIRTUAL_ENV}/bin/pip" install --no-cache-dir -r requirements.txt
 
-# Stage 2: keep only the runtime image and application files.
+# ขั้นตอนที่ 2: เก็บเฉพาะอิมเมจสำหรับรันและไฟล์แอปพลิเคชันที่จำเป็น
 FROM python:3.12-slim AS runtime
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -22,15 +22,15 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
-# Copy the prepared environment and the FastAPI application from the service.
+# คัดลอกสภาพแวดล้อมที่เตรียมไว้และแอปพลิเคชัน FastAPI จาก service
 COPY --from=builder /opt/venv /opt/venv
 COPY services/stats-service/app.py ./app.py
 
-# FastAPI/Uvicorn listens on this port inside the container.
+# FastAPI/Uvicorn รับคำขอที่พอร์ตนี้ภายใน container
 EXPOSE 8000
 
-# Drop root privileges for the application process.
+# ลดสิทธิ์ของโพรเซส ไม่ให้แอปพลิเคชันทำงานด้วย root
 USER nobody
 
-# Start the stats service with Uvicorn.
+# เริ่มต้น stats service ด้วย Uvicorn
 CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
