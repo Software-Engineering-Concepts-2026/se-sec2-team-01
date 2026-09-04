@@ -185,3 +185,28 @@
 - ทีมตรวจ Dockerfile ทุกบรรทัดกับ source จริง ไม่คัดลอก `.env`, token, password หรือข้อมูลผู้ใช้เข้า image
 - ทีมต้องยืนยันว่า runtime ใช้ user `nobody`, endpoint ตอบ 2xx, image size ไม่เกิน 500 MB และ registry เป็น public ตามเกณฑ์
 - AI ไม่ได้ยืนยันผล build, registry หรือ security scan แทนทีม และจะไม่รายงานผลดังกล่าวจนกว่าจะทดสอบจริง
+
+## Lab 7 — Refactoring Milestone 1 Usage
+
+### เครื่องมือที่ใช้ (Tools Used)
+* **AI Tools:** ChatGPT / Codex
+
+### งานที่ทีมใช้ AI ช่วย
+- ใช้ ChatGPT / Codex ช่วยอ่านโค้ดใน `services/stats-service/app.py` และวิเคราะห์ Code Smell ด้าน Poor/Vague Naming และ Inline response construction / Mixed responsibility
+- ใช้ ChatGPT / Codex ช่วยเสนอชื่อ Route Handlers แบบ Role-focused (`service_info`, `health_check`) ตามหลัก Pragmatic Programmer Tip 74
+- ใช้ ChatGPT / Codex ช่วยเสนอการสกัดฟังก์ชัน Response Payload (`get_service_info_payload`, `get_health_payload`) เพื่อแยกความรับผิดชอบและเพิ่ม Testability
+- ใช้ ChatGPT / Codex ช่วยร่าง Contract Tests ใน `services/stats-service/tests/test_app.py` ตามลำดับ Workflow: Explain -> Propose -> Apply -> Test เพื่อป้องกัน Regression
+
+### รายการ 3 Prompts สำคัญที่ทีมใช้
+1. *"อ่าน FastAPI service นี้แล้วระบุ code smell ด้าน naming และ endpoint responsibility พร้อมเหตุผล"*
+2. *"เสนอชื่อฟังก์ชันที่สื่อความหมายกว่า root และ health โดยคง HTTP contract เดิม"*
+3. *"ช่วยเสนอ test cases สำหรับตรวจว่า endpoint / และ /health ยังคืน status และ JSON เดิมหลัง refactor"*
+
+### ส่วนที่รับจาก AI และการตรวจสอบของทีม
+- AI ช่วยอธิบาย smell, เสนอชื่อ handler และโครงสร้างของ contract tests เป็น draft ทางเลือก
+- ทีมเป็นผู้ตัดสินใจเลือกแนวทาง Refactor ขนาดเล็ก ไม่เพิ่ม abstraction หรือ pattern เกินจำเป็น และคงความเข้ากันได้ของ API Contract เดิม 100%
+- ทีมเป็นผู้เขียนและรันชุดทดสอบด้วย `pytest` ในเครื่องจริง โดยยืนยันผลการทดสอบผ่าน 2 passed
+
+### Team verification and responsibility
+- **ทีมยืนยันว่าสมาชิกในทีมเป็นผู้ตรวจสอบ คิด วิเคราะห์ และเขียน/แก้ไขโค้ดและเอกสารเองมากกว่า 70% (ทีมรับผิดชอบ >= 70%)**
+- **ทีมไม่มีการส่งหรือหลุดของ Secret, Token, Password หรือข้อมูลระบุตัวตนบุคคลจริงลงใน Prompt หรือ Repository อย่างเด็ดขาด**
