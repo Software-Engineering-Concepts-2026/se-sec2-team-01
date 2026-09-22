@@ -1,4 +1,4 @@
-from fizzbuzz import fizzbuzz
+from src.fizzbuzz import fizzbuzz
 
 
 def test_fizzbuzz_three_returns_fizz():
