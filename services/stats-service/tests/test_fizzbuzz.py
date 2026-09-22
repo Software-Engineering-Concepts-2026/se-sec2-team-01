@@ -21,4 +21,17 @@ def test_fizzbuzz_seven_returns_string():
     assert fizzbuzz(7) == "7"
 
 
+def test_fizzbuzz_six_returns_fizz():
+    assert fizzbuzz(6) == "Fizz"
+
+
+def test_fizzbuzz_ten_returns_buzz():
+    assert fizzbuzz(10) == "Buzz"
+
+
+def test_fizzbuzz_thirty_returns_fizzbuzz():
+    assert fizzbuzz(30) == "FizzBuzz"
+
+
+
 
