@@ -36,6 +36,37 @@ def test_calculate_discount_boundary_hundred():
     assert result == 0
 
 
+def test_calculate_discount_zero_amount():
+    # Arrange
+    amount, percentage = 0, 10
+
+    # Act
+    result = calculate_discount(amount, percentage)
+
+    # Assert
+    assert result == 0
+
+
+def test_calculate_discount_negative_amount():
+    # Arrange
+    amount, percentage = -1, 10
+
+    # Act & Assert
+    with pytest.raises(ValueError, match="amount"):
+        calculate_discount(amount, percentage)
+
+
+def test_calculate_discount_fractional_amount():
+    # Arrange
+    amount, percentage = 50.50, 10
+
+    # Act
+    result = calculate_discount(amount, percentage)
+
+    # Assert
+    assert result == pytest.approx(45.45)
+
+
 def test_calculate_discount_negative_percentage():
     # Arrange
     amount, percentage = 100, -1
