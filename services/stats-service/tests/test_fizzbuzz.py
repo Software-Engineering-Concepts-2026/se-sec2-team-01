@@ -13,3 +13,12 @@ def test_fizzbuzz_fifteen_returns_fizzbuzz():
     assert fizzbuzz(15) == "FizzBuzz"
 
 
+def test_fizzbuzz_one_returns_string():
+    assert fizzbuzz(1) == "1"
+
+
+def test_fizzbuzz_seven_returns_string():
+    assert fizzbuzz(7) == "7"
+
+
+
