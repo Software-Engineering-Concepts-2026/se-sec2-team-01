@@ -5,4 +5,6 @@ def fizzbuzz(number: int) -> str:
         return "Fizz"
     if number == 5:
         return "Buzz"
+    return str(number)
+
 
