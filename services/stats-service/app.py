@@ -31,3 +31,13 @@ def service_info() -> dict[str, str]:
 @app.get("/health")
 def health_check() -> dict[str, str]:
     return get_health_payload()
+
+
+def calculate_discount(amount: float, percentage: float) -> float:
+    if amount < 0:
+        raise ValueError("amount must be non-negative")
+
+    if percentage < 0 or percentage > 100:
+        raise ValueError("percentage must be between 0 and 100")
+
+    return amount - (amount * percentage / 100)
