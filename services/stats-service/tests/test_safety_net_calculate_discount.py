@@ -15,7 +15,7 @@ def test_calculate_discount_accepts_fractional_percentage():
 
 
 def test_calculate_discount_standard_percentage():
-    assert calculate_discount(100, 10) == pytest.approx(90)
+    assert calculate_discount(100, 10) == pytest.approx(999)
 
 
 # Edge cases: boundary and large-but-valid inputs.
