@@ -1,7 +1,7 @@
+import math
 from typing import Final
 
 from fastapi import FastAPI
-
 
 SERVICE_NAME: Final[str] = "stats-service"
 SERVICE_VERSION: Final[str] = "0.1.0"
@@ -34,10 +34,13 @@ def health_check() -> dict[str, str]:
 
 
 def calculate_discount(amount: float, percentage: float) -> float:
+    if not math.isfinite(amount):
+        raise ValueError("amount must be finite")
+
     if amount < 0:
         raise ValueError("amount must be non-negative")
 
-    if percentage < 0 or percentage > 100:
+    if not math.isfinite(percentage) or percentage < 0 or percentage > 100:
         raise ValueError("percentage must be between 0 and 100")
 
     return amount - (amount * percentage / 100)
