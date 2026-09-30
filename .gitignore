@@ -11,6 +11,9 @@ venv/
 .venv/
 ENV/
 pyrightconfig.json
+.coverage
+.coverage.*
+.hypothesis/
 
 
 # Node.js

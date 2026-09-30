@@ -210,3 +210,32 @@
 ### Team verification and responsibility
 - **ทีมยืนยันว่าสมาชิกในทีมเป็นผู้ตรวจสอบ คิด วิเคราะห์ และเขียน/แก้ไขโค้ดและเอกสารเองมากกว่า 70% (ทีมรับผิดชอบ >= 70%)**
 - **ทีมไม่มีการส่งหรือหลุดของ Secret, Token, Password หรือข้อมูลระบุตัวตนบุคคลจริงลงใน Prompt หรือ Repository อย่างเด็ดขาด**
+
+## Lab 9 — Unit Test, TDD, Property-Based Testing และ CI
+
+### เครื่องมือและงานที่ AI ช่วย
+
+- ใช้ ChatGPT/Codex ช่วยตรวจสถานะ repository ล่าสุดเทียบ Step 1–5 และ rubric ก่อนเริ่มแก้
+- ใช้ AI ช่วยเสนอกรณีทดสอบ `calculate_discount` สำหรับ amount และ percentage หลาย partition/boundary รวมถึง properties ที่ตรวจผลลัพธ์จริง ไม่ตรวจเพียงว่าโค้ดถูกเรียก
+- ใช้ AI ช่วยร่าง Hypothesis tests, GitHub Actions workflow และรูปแบบบันทึก Saboteur โดยปรับ path และคำสั่งให้เข้ากับโครงสร้าง repository
+- ใช้ AI ช่วยจัดโครงสร้างเอกสาร AI usage และบันทึกผลการทดสอบ Lab 9 จากหลักฐานที่ตรวจได้
+
+### ตัวอย่าง prompts ที่ใช้จริง
+
+1. “เริ่มทำ step3-5 ตามใบงานปฏิบัติการ Lab 9 และ rubric ได้เลย”
+2. “ตรวจ repo อีกรอบว่าขาดอะไรบ้างทั้งหมดของ lab9”
+3. “ดึงข้อมูลล่าสุด แล้วตรวจตั้งแต่ step1-5 ตามใบงานปฏิบัติการ Lab 9 และ rubric ทำในส่วนที่ยังขาดทั้งหมด และอย่าพึ่ง push”
+
+### ส่วนที่ AI ช่วยร่างและการตรวจสอบ
+
+- AI ช่วยร่าง tests, workflow และข้อความเอกสาร; มีการปรับชื่อไฟล์และ path ให้ตรงกับ rubric และตรวจ assertions ว่ายืนยันค่าผลลัพธ์/exception ของ `calculate_discount` จริง
+- Hypothesis พบกรณี `NaN` ที่ validation เดิมยอมให้ผ่าน จึงเพิ่มการปฏิเสธค่าที่ไม่ finite หลังยืนยันด้วย test ที่ล้มก่อนแก้และผ่านหลังแก้
+- การทดสอบ Saboteur เปลี่ยนขอบเขตชั่วคราวจาก `percentage > 100` เป็น `percentage >= 100`; unit test และ property test ล้มเหลวตามคาด แล้วคืนโค้ดและรันทดสอบซ้ำ
+- การ sabotage ถูกทดสอบในเครื่องเท่านั้นและไม่ได้ push โค้ดที่จงใจ break; หลัง push โค้ดที่คืนสภาพแล้ว ยังไม่ได้ตรวจยืนยันผล GitHub Actions, branch protection หรือ badge ใน PR description
+
+### Team verification and responsibility
+
+- ทีมต้องทบทวนว่า business rule ให้ปฏิเสธ `NaN`/infinity และ properties ที่เลือกตรงกับกติกาของโครงการก่อน merge
+- ทีมต้องยืนยัน workflow บน GitHub ว่า run ทั้ง push และ pull request, ตั้ง required status check ให้ block merge และแนบ badge ใน PR description; AI ไม่ได้ยืนยันการตั้งค่า GitHub แทนทีม
+- AI เป็นผู้ช่วยตรวจและร่างเท่านั้น ทีมรับผิดชอบการตัดสินใจ domain rule, การตรวจผลจริง และการอนุมัติงาน
+- ไม่ส่ง secret, token, password หรือข้อมูลส่วนบุคคลจริงเข้า prompt

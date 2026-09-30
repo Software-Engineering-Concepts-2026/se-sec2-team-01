@@ -1,3 +1,6 @@
+<!-- GitHub Actions badge: it turns green after the Tests workflow passes. -->
+[![Tests](https://github.com/Software-Engineering-Concepts-2026/se-sec2-team-01/actions/workflows/test.yml/badge.svg)](https://github.com/Software-Engineering-Concepts-2026/se-sec2-team-01/actions/workflows/test.yml)
+
 ## What
 <!-- อธิบายว่า PR นี้เพิ่ม/แก้อะไร -->
 
@@ -16,5 +19,6 @@
 - [ ] Branch `feature/...` ไม่ได้ push ตรง `main`
 - [ ] Commit message ตาม Conventional Commits (`docs(team): ...` / `feat: ...`)
 - [ ] PR description ครบ What/Why + Promise + @reviewer
+- [ ] GitHub Actions Tests workflow is green and required by branch protection on `main`
 - [ ] ผ่าน review อย่างน้อย 1 คน (APPROVED)
 - [ ] Project board card ย้ายไป Done (ถ้าเป็น Lab)
