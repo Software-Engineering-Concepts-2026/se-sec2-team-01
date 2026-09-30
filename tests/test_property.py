@@ -2,10 +2,9 @@ import math
 import sys
 
 import pytest
-from hypothesis import given, strategies as st
-
 from app import calculate_discount
-
+from hypothesis import given
+from hypothesis import strategies as st
 
 VALID_AMOUNTS = st.integers(min_value=0, max_value=10_000)
 VALID_PERCENTAGES = st.integers(min_value=0, max_value=100)
