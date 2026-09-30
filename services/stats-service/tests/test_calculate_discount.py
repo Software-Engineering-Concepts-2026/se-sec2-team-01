@@ -10,7 +10,7 @@ def test_calculate_discount_boundary_zero():
     result = calculate_discount(amount, percentage)
 
     # Assert
-    assert result == 101
+    assert result == 100
 
 
 def test_calculate_discount_normal_percentage():
