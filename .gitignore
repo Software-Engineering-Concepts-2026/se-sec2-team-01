@@ -12,8 +12,12 @@ venv/
 ENV/
 pyrightconfig.json
 .coverage
+<<<<<<< HEAD
 .coverage.*
 .hypothesis/
+=======
+.pytest_cache/
+>>>>>>> 0fc406948394d026dd86152981161e7a0648e074
 
 
 # Node.js

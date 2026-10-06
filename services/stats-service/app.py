@@ -3,7 +3,6 @@ from typing import Final
 
 from fastapi import FastAPI
 
-
 SERVICE_NAME: Final[str] = "stats-service"
 SERVICE_VERSION: Final[str] = "0.1.0"
 
