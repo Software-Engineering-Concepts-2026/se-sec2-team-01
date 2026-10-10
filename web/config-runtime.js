@@ -36,6 +36,8 @@
           var localSupabase = isLoopback(parsed.hostname);
           if (parsed.username || parsed.password || parsed.search || parsed.hash || parsed.pathname !== '/') {
             error = 'GN_CONFIG.supabaseUrl must be the Supabase project origin without credentials, path, query, or fragment.';
+          } else if (!localSupabase && !/^[a-z0-9-]+\.supabase\.co$/i.test(parsed.hostname)) {
+            error = 'GN_CONFIG.supabaseUrl must use a Supabase project host (*.supabase.co) or a local loopback endpoint.';
           } else if (parsed.protocol !== 'https:' && !(local && parsed.protocol === 'http:' && localSupabase)) {
             error = 'Supabase must use HTTPS except when both the app and local Supabase run on loopback.';
           } else {

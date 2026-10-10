@@ -48,6 +48,7 @@ test('rejects missing settings, non-HTTPS URLs, and non-publishable keys', (t) =
   const invalidInputs = [
     {},
     { SUPABASE_URL: 'http://example.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test-key' },
+    { SUPABASE_URL: 'https://attacker.example', SUPABASE_PUBLISHABLE_KEY: 'sb_publishable_test-key' },
     { SUPABASE_URL: 'https://example.supabase.co', SUPABASE_PUBLISHABLE_KEY: 'sb_secret_test-key' }
   ];
 

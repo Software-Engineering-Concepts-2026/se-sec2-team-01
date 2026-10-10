@@ -53,6 +53,40 @@ test('service worker precaches only app-shell assets and removes only old Good N
   assert.deepEqual(app.caches.deleted, ['good-night-shell-v0']);
 });
 
+test('service worker caches the generated config during install for the first offline reopen', async () => {
+  const configSource = 'window.GN_CONFIG = { mode: "cloud" };';
+  const app = worker(async (request) => {
+    const url = typeof request === 'string' ? request : request.url;
+    return url.endsWith('/config.js') ? new Response(configSource) : new Response('ok');
+  });
+  let install;
+  app.listeners.install({ waitUntil: (promise) => { install = promise; } });
+  await install;
+
+  const cachedConfig = await app.cache.match('https://sleep.example/app/config.js');
+  assert.equal(await cachedConfig.text(), configSource);
+
+  let responsePromise;
+  app.listeners.fetch({
+    request: { method: 'GET', url: 'https://sleep.example/app/config.js', mode: 'cors' },
+    respondWith: (promise) => { responsePromise = promise; },
+  });
+  const response = await responsePromise;
+  assert.equal(await response.text(), configSource);
+});
+
+test('service worker installation still succeeds when no generated config exists', async () => {
+  const app = worker(async (request) => {
+    const url = typeof request === 'string' ? request : request.url;
+    return url.endsWith('/config.js') ? new Response('', { status: 404 }) : new Response('ok');
+  });
+  let install;
+  app.listeners.install({ waitUntil: (promise) => { install = promise; } });
+
+  await assert.doesNotReject(install);
+  assert.equal(await app.cache.match('https://sleep.example/app/config.js'), undefined);
+});
+
 test('service worker leaves Supabase API and cross-origin requests untouched', () => {
   const app = worker(async () => new Response('must not be called'));
   for (const request of [

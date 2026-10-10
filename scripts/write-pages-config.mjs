@@ -26,6 +26,10 @@ if (
   throw new Error('SUPABASE_URL must be an HTTPS project origin without credentials, path, query, or fragment.');
 }
 
+if (!/^[a-z0-9-]+\.supabase\.co$/i.test(parsedUrl.hostname)) {
+  throw new Error('SUPABASE_URL must use a Supabase project host (*.supabase.co).');
+}
+
 if (!publishableKey.startsWith('sb_publishable_')) {
   throw new Error('SUPABASE_PUBLISHABLE_KEY must be a browser-safe sb_publishable_ key, not a secret key.');
 }

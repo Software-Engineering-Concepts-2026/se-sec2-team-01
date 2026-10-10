@@ -45,6 +45,15 @@ test('a configured cloud origin enables Supabase only with HTTPS', () => {
   assert.equal(result.error, null);
 });
 
+test('a hosted cloud config rejects HTTPS origins that are not Supabase project hosts', () => {
+  const result = resolveConfig({
+    mode: 'cloud', supabaseUrl: 'https://attacker.example', supabaseAnonKey: 'public-key',
+  }, { protocol: 'https:', hostname: 'sleep.example' });
+
+  assert.equal(result.config.enabled, false);
+  assert.match(result.error, /Supabase project host/i);
+});
+
 test('local-only mode cannot be forced on a hosted origin', () => {
   const result = resolveConfig({ mode: 'local' }, { protocol: 'https:', hostname: 'sleep.example' });
 

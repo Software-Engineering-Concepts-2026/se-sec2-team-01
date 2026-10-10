@@ -17,6 +17,12 @@ var SHELL_URLS = SHELL_ASSETS.map(function (asset) { return new URL(asset, self.
 self.addEventListener('install', function (event) {
   event.waitUntil(caches.open(CACHE_NAME).then(function (cache) {
     return cache.addAll(SHELL_ASSETS);
+  }).then(function () {
+    return fetch(CONFIG_URL.href).then(function (response) {
+      if (response && response.ok) return caches.open(CACHE_NAME).then(function (cache) {
+        return cache.put(CONFIG_URL.href, response.clone());
+      });
+    }).catch(function () {});
   }).then(function () { return self.skipWaiting(); }));
 });
 
