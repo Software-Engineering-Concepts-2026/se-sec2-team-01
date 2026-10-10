@@ -10,6 +10,10 @@ Sleep tracker ติดตาม วิเคราะห์และช่ว�
 
 ## 🚀 Getting Started
 
+### Good Night web app
+
+The supplied sleep tracker is available as a static app in [`web/`](web/index.html). Run it locally in local-only mode with `python -m http.server 4173 --directory web`, then open `http://localhost:4173`. For Supabase cloud mode, schema/RLS, Auth redirect, and account-deletion setup, follow [`docs/good-night-setup.md`](docs/good-night-setup.md). The original Docker instructions below still apply to the separate Python stats service.
+
 This section explains how to get a local copy of the project up and running for development and testing purposes.
 
 ### Prerequisites

@@ -8,6 +8,21 @@ permissions:
   contents: read
 
 jobs:
+  web:
+    name: browser-independent web tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      - name: Run web tests
+        run: node --test tests/web/*.test.mjs
+
   test:
     name: pytest and coverage
     runs-on: ubuntu-latest
