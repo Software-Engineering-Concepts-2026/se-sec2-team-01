@@ -55,7 +55,9 @@ test('service worker precaches only app-shell assets and removes only old Good N
 
 test('service worker caches the generated config during install for the first offline reopen', async () => {
   const configSource = 'window.GN_CONFIG = { mode: "cloud" };';
+  let online = true;
   const app = worker(async (request) => {
+    if (!online) throw new Error('offline');
     const url = typeof request === 'string' ? request : request.url;
     return url.endsWith('/config.js') ? new Response(configSource) : new Response('ok');
   });
@@ -64,8 +66,9 @@ test('service worker caches the generated config during install for the first of
   await install;
 
   const cachedConfig = await app.cache.match('https://sleep.example/app/config.js');
-  assert.equal(await cachedConfig.text(), configSource);
+  assert.ok(cachedConfig);
 
+  online = false;
   let responsePromise;
   app.listeners.fetch({
     request: { method: 'GET', url: 'https://sleep.example/app/config.js', mode: 'cors' },

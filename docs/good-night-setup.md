@@ -23,6 +23,8 @@ Open `http://localhost:4173`. Do not create `web/config.js` for local-only use; 
 5. Copy `web/config.example.js` to the ignored, local-only `web/config.js`. Set `mode: 'cloud'`, `supabaseUrl`, and the browser-safe anon/publishable key. Keep `schemaV2: true` after applying the schema. Never put a Supabase secret/service-role key in `web/`, browser storage, a URL, or Git.
 6. Serve the app from the repository root with the same static-server command above. The browser config supports local Supabase over HTTP only when both the app and Supabase endpoint use loopback; hosted app/project URLs require HTTPS.
 
+Hosted configuration currently accepts Supabase's standard `*.supabase.co` project host only. Custom Supabase domains need an explicit trusted-host allowlist before use.
+
 The app refuses to boot on a hosted origin if cloud configuration is missing or invalid. This prevents a hosted deployment from quietly saving to a device-local account instead of the expected cloud account.
 
 ## Local Supabase and RLS tests

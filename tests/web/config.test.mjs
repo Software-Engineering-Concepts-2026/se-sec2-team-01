@@ -75,6 +75,15 @@ test('local Supabase may use HTTP only when both endpoints are loopback', () => 
   assert.match(hosted.error, /HTTPS/i);
 });
 
+test('a hosted app rejects an HTTPS loopback Supabase endpoint', () => {
+  const result = resolveConfig({
+    mode: 'cloud', supabaseUrl: 'https://localhost', supabaseAnonKey: 'public-key',
+  }, { protocol: 'https:', hostname: 'sleep.example' });
+
+  assert.equal(result.config.enabled, false);
+  assert.match(result.error, /loopback|local/i);
+});
+
 test('a hosted app served over plain HTTP is rejected even when Supabase uses HTTPS', () => {
   const result = resolveConfig({
     mode: 'cloud', supabaseUrl: 'https://example-project.supabase.co', supabaseAnonKey: 'public-key',
