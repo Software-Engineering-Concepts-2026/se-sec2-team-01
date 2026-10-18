@@ -1,11 +1,27 @@
 /* Cache only the same-origin static app shell. Supabase/Auth/Data API traffic is never cached. */
 'use strict';
 
-var CACHE_NAME = 'good-night-shell-v1';
+var CACHE_NAME = 'good-night-shell-v3';
 var SHELL_ASSETS = [
   './index.html',
+  './styles.css',
+  './vendor/lucide.js',
+  './core/sleep-domain.js',
+  './core/cloud-client.js',
+  './core/bcrypt.js',
+  './core/storage.mjs',
   './config-runtime.js',
   './sync-runtime.js',
+  './ai-recommendations.js',
+  './feature-registry.mjs',
+  './app/main.mjs',
+  './app/router.mjs',
+  './app/navigation.mjs',
+  './app/theme.mjs',
+  './app/pwa.mjs',
+  './features/sleep-recording.mjs',
+  './features/dashboard-stats.mjs',
+  './features/tips-settings.mjs',
   './manifest.webmanifest',
   './icons/icon.svg'
 ];

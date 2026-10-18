@@ -3,15 +3,9 @@ import { readFileSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
 import test from 'node:test';
 
-const html = readFileSync(new URL('../../web/index.html', import.meta.url), 'utf8');
-const marker = '/* Good Night – tiny Supabase client (auth + data) using plain fetch. No external library. */';
+const cloudSource = readFileSync(new URL('../../web/core/cloud-client.js', import.meta.url), 'utf8');
 
 function loadCloud(fetchHandler) {
-  const markerAt = html.indexOf(marker);
-  assert.notEqual(markerAt, -1, 'Supabase client script must be present');
-  const scriptStart = html.lastIndexOf('<script>', markerAt);
-  const scriptEnd = html.indexOf('</script>', markerAt);
-  const code = html.slice(scriptStart + '<script>'.length, scriptEnd);
   const values = new Map([['gn.cloud', JSON.stringify({
     access_token: 'user-session-token',
     refresh_token: 'refresh-token',
@@ -32,7 +26,7 @@ function loadCloud(fetchHandler) {
       schemaV2: true,
     },
   };
-  runInNewContext(code, {
+  runInNewContext(cloudSource, {
     window,
     localStorage,
     fetch: fetchHandler,
