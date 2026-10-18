@@ -2,6 +2,8 @@
 
 # 🌙 Good Night
 
+[![CI Pipeline](https://github.com/Software-Engineering-Concepts-2026/se-sec2-team-01/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Software-Engineering-Concepts-2026/se-sec2-team-01/actions/workflows/ci.yml)
+
 **Sleep tracker ที่ช่วยบันทึก วิเคราะห์ และแนะนำ เพื่อให้คุณนอนหลับได้ดีขึ้น**
 
 | 🌐 เว็บไซต์ | 🎞️ สไลด์นำเสนอ |
