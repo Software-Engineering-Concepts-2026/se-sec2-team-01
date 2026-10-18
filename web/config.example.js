@@ -5,5 +5,6 @@ window.GN_CONFIG = {
   supabaseUrl: '', // e.g. https://YOUR-PROJECT-REF.supabase.co
   supabaseAnonKey: '', // public/anon key only
   schemaV2: true,
+  schemaV3: false, // true only after applying supabase/migrations/*_add_entry_behavior_details.sql
   privacyContact: ''
 };

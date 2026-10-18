@@ -1,7 +1,7 @@
 # Safety Net ของทีม Need to rest
 
 ## 1. ฟังก์ชันที่เลือกทดสอบ
--ฟังก์ชัน: calculate_discount — อยู่ไฟล์ services/stats-service/app.py
+- ฟังก์ชัน: `calculate_discount` — อยู่ไฟล์ `services/stats-service/app.py`; ไฟล์ entry point ตามชื่อใน rubric คือ `tests/test_unit.py` และมีชุด service tests เพิ่มใน `services/stats-service/tests/test_calculate_discount.py`
 -เหตุผลที่เลือก: เป็น Pure Function ที่เป็น Core Business Logic สำหรับคำนวณส่วนลด ซึ่งมีผลกระทบต่อความถูกต้องทางการเงินของผู้ใช้งานโดยตรง และไม่มี External Dependencies (ไม่ต้องต่อ Database หรือ External API) เหมาะสมที่สุดสำหรับการทำ Safety Net และ Automated Unit Testing
 
 
@@ -19,17 +19,30 @@
 
 ## 3. Coverage (วางผลลัพธ์จริงจากเครื่องตัวเอง)
 ![coverage-result](./images/coverage.png)
-ตีความ: ชุดการทดสอบครอบคลุมเส้นทางทั้งหมด 100% (happy path, boundary/edge cases และ error handling) ของการทำงานใน app.py โดยเฉพาะฟังก์ชันคำนวณส่วนลด calculate_discount รันผ่านครบ 15 tests
-ส่วนที่ยังไม่ครอบคลุม + เหตุผลที่ยอมรับความเสี่ยง: ไม่มี (N/A) เนื่องจากทดสอบครอบคลุมครบ 100% (Miss = 0 บรรทัด) ไม่มีโค้ดส่วนที่ตกหล่น
+ตีความ: ภาพ coverage/result ด้านบนเป็นหลักฐานจากรอบทดสอบเดิมที่แสดงในภาพ (15 tests) และครอบคลุม `calculate_discount` ณ เวลาที่บันทึกภาพ ไม่ใช่ผลนับของ test suite ล่าสุดหลังเพิ่มไฟล์ตามชื่อ rubric
+ส่วนที่ยังไม่ครอบคลุม + เหตุผลที่ยอมรับความเสี่ยง: ไม่มีในฟังก์ชันที่วัดจาก run ในภาพ (Miss = 0 บรรทัด)
+
+### ผลตรวจซ้ำในเครื่อง (2026-10-19)
+
+รันคำสั่งจาก repository root ด้วย virtual environment ของงาน:
+
+```powershell
+python -m pytest -q --cov=app --cov=src.fizzbuzz --cov-branch --cov-report=term-missing --cov-fail-under=90
+```
+
+ผลล่าสุด: **41 passed**, `services/stats-service/app.py` และ `src/fizzbuzz.py` ได้ statement/branch coverage **100%** (Miss = 0); มี Starlette deprecation warning จาก dependency แต่ไม่มี test ล้มเหลว
 
 ## 4. CI block อะไรบ้าง
--`lint` (ruff): รูปแบบโค้ด — เจอ import ไม่ได้ใช้ = แดง
--`test` (pytest): เทสต์ทั้งหมด + coverage
+- `lint` (Ruff): ตรวจรูปแบบและปัญหาที่ linter ตรวจพบ
+- `test` (pytest): รัน tests พร้อม coverage threshold ที่กำหนดใน workflow
+- `build` (Docker): สร้าง image ของ stats service เพื่อเช็กว่า Dockerfile build ได้
+- Workflow checks แสดงผล pass/fail ใน GitHub Actions แต่ยัง **ยืนยันไม่ได้** ว่า branch protection/ruleset ของ `main` ตั้ง checks เหล่านี้เป็น required หรือ block merge จริง
+- ภาพ `result.png` เป็นหลักฐานผล workflow เท่านั้น ไม่ใช่ภาพหน้า Settings ที่ยืนยัน branch protection หรือข้อความ “Merging is blocked”
 ![test-result](./images/result.png)
 
 ## 5. บทเรียนที่ได้
 -เรียนรู้เรื่องฟังก์ชั่น และผลกระทบของมัน หากเกิดข้อผิดพลาดขึ้นมา
 
--เรียนรู้วิธีการตั้งค่า Branch Protection และ Rulesets บน GitHub เพื่อบังคับใช้ CI เช็กสถานะก่อน Merge 
+-ได้ศึกษาแนวทางตั้งค่า Branch Protection และ Rulesets เพื่อบังคับใช้ CI ก่อน merge; สถานะการตั้งค่าจริงของ repository ต้องให้ผู้มีสิทธิ์ตรวจยืนยันเพิ่มเติม
 
--ได้ฝึกแก้ไขปัญหาและการจัดการ Import รวมถึงการเขียนเทสต์ครอบคลุมทั้ง Boundary และ Error Handling 
+-ได้ฝึกแก้ไขปัญหาและการจัดการ Import รวมถึงการเขียนเทสต์ครอบคลุมทั้ง Boundary และ Error Handling

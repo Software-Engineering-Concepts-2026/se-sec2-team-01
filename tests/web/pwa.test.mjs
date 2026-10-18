@@ -16,7 +16,7 @@ function worker(fetchHandler) {
   };
   const caches = {
     open: async () => cache,
-    keys: async () => ['good-night-shell-v0', 'good-night-shell-v1', 'unrelated-cache'],
+    keys: async () => ['good-night-shell-v0', 'good-night-shell-v1', 'good-night-shell-v2', 'unrelated-cache'],
     delete: async (key) => { caches.deleted.push(key); return true; },
     deleted: [],
   };
@@ -45,12 +45,16 @@ test('service worker precaches only app-shell assets and removes only old Good N
   app.listeners.install({ waitUntil: (promise) => { install = promise; } });
   await install;
   assert.deepEqual(Array.from(app.cache.assets), [
-    './index.html', './config-runtime.js', './sync-runtime.js', './manifest.webmanifest', './icons/icon.svg',
+    './index.html', './styles.css', './vendor/lucide.js', './core/sleep-domain.js', './core/cloud-client.js',
+    './core/bcrypt.js', './core/storage.mjs', './config-runtime.js', './sync-runtime.js', './ai-recommendations.js',
+    './feature-registry.mjs', './app/main.mjs', './app/router.mjs', './app/navigation.mjs', './app/theme.mjs',
+    './app/pwa.mjs', './features/sleep-recording.mjs', './features/dashboard-stats.mjs', './features/tips-settings.mjs',
+    './manifest.webmanifest', './icons/icon.svg',
   ]);
   let activate;
   app.listeners.activate({ waitUntil: (promise) => { activate = promise; } });
   await activate;
-  assert.deepEqual(app.caches.deleted, ['good-night-shell-v0']);
+  assert.deepEqual(app.caches.deleted, ['good-night-shell-v0', 'good-night-shell-v1', 'good-night-shell-v2']);
 });
 
 test('service worker caches the generated config during install for the first offline reopen', async () => {

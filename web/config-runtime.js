@@ -57,6 +57,7 @@
         supabaseUrl: supabaseUrl,
         supabaseAnonKey: supabaseAnonKey,
         schemaV2: source.schemaV2 === true,
+        schemaV3: source.schemaV3 === true,
         privacyContact: String(source.privacyContact || ''),
         enabled: enabled
       },
