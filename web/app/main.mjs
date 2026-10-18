@@ -6,7 +6,7 @@ import { createStorage } from '../core/storage.mjs';
 import { renderNavigation, renderAccountHeader, routeLabel } from './navigation.mjs';
 import { createRouter, parseRouteHash } from './router.mjs';
 import { applyTheme, createThemeFeature } from './theme.mjs';
-/* Good Night – app UI. Data lives only on this device (localStorage). */
+/* Good Night app UI. localStorage is the per-account cache; cloud mode syncs with Supabase. */
 (function () {
   'use strict';
   var G = window.GN, KEY = 'gn.v1';
