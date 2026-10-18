@@ -262,3 +262,43 @@
 - การวิเคราะห์สาเหตุจาก error เป็นเพียงสมมติฐานจนกว่าจะตรวจ configuration, response และ log จริง เช่น ข้อความเกี่ยวกับการสมัครบัญชีไม่ควรสรุปจาก toggle หรือ screenshot จุดเดียว
 - AI ช่วยสร้างหรือปรับ code/document drafts ได้ แต่ผู้พัฒนาต้องตรวจ diff และทดสอบ flow ที่เกี่ยวข้องก่อนยืนยันว่าใช้งานได้
 - เอกสารนี้ไม่บันทึกค่า API key, password, token หรือ secret; ค่าที่ต้องใช้จริงควรอยู่ใน environment variables หรือ secret store ที่เหมาะสม ไม่อยู่ในไฟล์ที่เผยแพร่
+
+## Lab 10 — DevOps and Continuous Delivery
+
+### เครื่องมือและงานที่ AI ช่วยในรอบตรวจนี้
+
+- ใช้ ChatGPT/Codex ตรวจ deliverables เทียบกับใบงาน Lab 10 และช่วยร่างการปรับ `.github/workflows/ci.yml` ให้มี lint, test และ build แยก jobs, pip cache และ coverage gate
+- ใช้ AI ช่วยร่าง `docker-compose.yml`, `.env.example` และคำอธิบายการรัน stack แบบ local โดยแยกค่าลับออกจากไฟล์ที่ commit
+- ใช้ AI ช่วยคำนวณ/จัดรูป DORA metrics จากข้อมูล PR และ workflow ที่ตรวจได้ พร้อมระบุข้อจำกัดเมื่อไม่มี deployment หรือ incident timestamp
+
+### Prompts ที่ใช้จริง
+
+1. “ตรวจเทียบทุกอย่างทุกlabว่ายังขาดอะไรอีกมั้ย”
+2. “ตั้งแต่lab9 ไป แก้ในส่วนที่ขาด และแก้ให้ตามrubilc เนื่องจากอาจารย์ใช้aiตรวจอาจจะต้องชื่อตามใบงาน เผื่อaiตัวนั้นตรวจตามชื่อ และpushตัวไฟล์web app โค้ดรวมด้วย”
+
+### ส่วนที่ AI ช่วยร่างและการตรวจสอบ
+
+- AI ช่วยร่างการเปลี่ยนแปลง workflow, Compose และ DORA report ใน branch นี้; ผู้พัฒนาต้องตรวจ YAML, คำสั่ง build/test และผลจริงก่อน merge
+- DORA lead-time ในเอกสารเป็น proxy จาก PR timestamps ไม่ใช่ commit-to-production; CFR/MTTR และ Vercel deployment frequency ไม่ถูกแต่งขึ้นเมื่อไม่มีหลักฐานเพียงพอ
+- Compose ใช้ค่าตัวอย่าง local เท่านั้น; ไม่รวม Supabase secret, generated config หรือ production credential และไม่ได้แก้ schema/ข้อมูลของ Supabase
+- โค้ดเว็บที่รวมใน repo มาจาก source branch ของ Good Night ที่มีอยู่แล้ว ไม่ได้อ้างว่า AI สร้างแอปทั้งหมดขึ้นใหม่
+
+## Lab 12B — Safety Net Sprint
+
+### เครื่องมือและงานที่ AI ช่วย
+
+- ใช้ ChatGPT/Codex ตรวจตำแหน่งไฟล์, ชื่อ deliverables, test behavior, coverage, CI และข้อความใน `docs/safety-net.md` เทียบกับ rubric
+- เพิ่ม `tests/test_unit.py` ให้ตรงชื่อที่ใบงาน Lab 9 ระบุ และปรับ Safety Net disclosure ให้แยกผลภาพทดสอบเดิมออกจากผลตรวจซ้ำ
+- ตรวจข้ออ้าง branch protection อย่างระมัดระวัง: workflow ใน repo ไม่ใช่หลักฐานว่า required checks ถูกเปิดใน GitHub settings
+
+### Prompts ที่ใช้จริง
+
+1. “ตรวจเทียบทุกอย่างทุกlabว่ายังขาดอะไรอีกมั้ย”
+2. “ตั้งแต่lab9 ไป แก้ในส่วนที่ขาด และแก้ให้ตามrubilc เนื่องจากอาจารย์ใช้aiตรวจอาจจะต้องชื่อตามใบงาน เผื่อaiตัวนั้นตรวจตามชื่อ และpushตัวไฟล์web app โค้ดรวมด้วย”
+
+### ส่วนที่ AI ช่วยร่างและการตรวจสอบ
+
+- AI ช่วยร่าง test cases, เอกสาร และการตรวจ rubric; assertions ยืนยันผลส่วนลด/exception จริง ไม่ใช่เพียงตรวจว่า function ถูกเรียก
+- ผู้พัฒนาต้องทบทวนชื่อไฟล์, test output และ diff ก่อนใช้ส่งงาน
+- ไม่ได้เพิ่ม `reflect.md` จาก Post-quiz ตามข้อตกลงของผู้ใช้ และไม่กล่าวอ้างว่า branch protection เปิดใช้งานแล้ว
+- ไม่มีการใส่ password, token, API key หรือ secret ลงในเอกสารหรือ source code
