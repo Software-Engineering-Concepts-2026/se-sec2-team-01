@@ -1,0 +1,18 @@
+{
+  "name": "Good Night — บันทึกการนอน",
+  "short_name": "Good Night",
+  "description": "บันทึกและวิเคราะห์การนอนของคุณ",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#17142B",
+  "theme_color": "#17142B",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
